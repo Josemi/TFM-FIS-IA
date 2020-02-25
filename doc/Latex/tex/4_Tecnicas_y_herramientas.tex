@@ -1,6 +1,37 @@
 \capitulo{4}{Técnicas y herramientas}
 
-Esta parte de la memoria tiene como objetivo presentar las técnicas metodológicas y las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Si se han estudiado diferentes alternativas de metodologías, herramientas, bibliotecas se puede hacer un resumen de los aspectos más destacados de cada alternativa, incluyendo comparativas entre las distintas opciones y una justificación de las elecciones realizadas. 
-No se pretende que este apartado se convierta en un capítulo de un libro dedicado a cada una de las alternativas, sino comentar los aspectos más destacados de cada opción, con un repaso somero a los fundamentos esenciales y referencias bibliográficas para que el lector pueda ampliar su conocimiento sobre el tema.
+En este apartado se van a comentar las distintas técnicas y herramientas utilizadas en el desarrollo del proyecto.
 
+\section{Visión por computador $\sim$ Detección de movimiento}
+La visión por computador, también llamada visión artificial, es la parte de la ciencia de la computación orientada a la recogida y al tratamiento de imágenes y vídeos~\cite{wiki:visionartificial}.
+
+Por la tipología de los datos con los que se trabaja en la visión por computador el procesamiento de éstos es muy costoso, este elevado coste computacional es causado en gran parte por la calidad de las imágenes y en el caso de los vídeos, además de la calidad de la imagen, por la cantidad de fotogramas por segundo con el que se ha grabado éste. ¿AÑADIR AQUI QUE POR ESO SE HA USADO GAMMA (TENDRÍA QUE EXPLICAR ANTES QUE ES GAMMA)?
+
+Una de las principales funciones que tiene la visión artificial es la detección de movimiento, la cual consiste en primero detectar la posición de cada una de las partes del cuerpo (depende del propio algoritmo la división que se quiera realizar sobre el cuerpo) para posteriormente realizar un seguimiento de estos elementos.
+
+Existen distintos algoritmos de detección de movimiento, cada uno diferenciado por el uso de distintos lenguajes de programación y diferentes métodos de inteligencia artificial con los que entrenar el modelo. Como en este proyecto se ha querido trabajar en \textit{Python} se han investigado los siguientes algoritmos que están implementados en este lenguaje de programación. 
+
+\subsection{Detectron}
+Detectron es un proyecto de inteligencia artificial de \textit{Facebook} centrado en la detección de objetos y personas con el uso de algoritmos de \textit{deep learning}~\cite{Detectron2018}. El proyecto se apoya en una de las librerías de inteligencia artificial más usadas en \textit{Python}, \textit{PyTorch}.
+
+El proyecto cuenta ya con una segunda versión llamada Detectron2, figura~\ref{fig:detectron}, en la cual se han mejorado y añadido más modelos~\cite{wu2019detectron2}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{logo_detectron}
+	\caption{Logo de Detectron2.}
+	\label{fig:detectron}
+\end{figure}
+
+\subsection{PoseNet}
+PoseNet es un proyecto de \textit{Google} orientado unicamente al seguimiento del movimiento de las personas centrando su análisis en los puntos claves del cuerpo humano. El proyecto se basa en la librería de inteligencia artificial de la propia compañía \textit{Google} llamada \textit{TensorFlow}, figura~\ref{fig:tensorflow}~\cite{tensorflow2015-whitepaper,tensorflow2020}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{tensorflow}
+	\caption{Logo de TensorFlow.}
+	\label{fig:tensorflow}
+\end{figure}
+
+\subsection{TF-Pose-Estimator}
 
