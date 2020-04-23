@@ -11,10 +11,31 @@ Dentro de este plan para el desarrollo del proyecto se pueden diferenciar dos pu
 \section{Planificación temporal}
 Como ya se ha comentado, la planificación temporal se ha divido en distintos \textit{sprints} de 2 semanas cada uno, en lo cuales se realizaron distintas tareas y reuniones. Cabe destacar que antes de realizar el primer \textit{sprint} se desarrolló la aplicación FIS sobre la cuál será implementado en el futuro el proyecto desarrollado.
 
-\subsection{Desarrollo de la aplicación FIS}
-¿Esto lo documento mas?
-\subsection{\textit{Sprint}1 - 17/02/2020 -> 26/02/2020}
-Este es el primer \textit{sprint} de desarrollo de la aplicación, en el se realizaron las primeras tareas de creación del repositorio en \textit{GitHub} y la creación de la estructura del mismo. Además, se creo el documento \textit{LaTeX} a partir de la plantilla de la asignatura. Las tareas más relevantes en este primer \textit{sprint} fueron las relacionadas con la configuración de \textit{Gamma} y los primeros pasos en la investigación de algoritmos de visión por computador y detección de movimiento, como son \textit{Detectron2} y \textit{PoseNet}.
+\subsection{\textit{Sprint}0}
+En este \textit{sprint} se creó la aplicación para el Hospital Universitario de Burgos llamada FIS-HUBU. Esta aplicación, como se ha visto en el apartado~\ref{desarrolloFH}, sirve para realizar vídeo llamadas entre médicos y los pacientes con Parkinson en las cuales se realizan rehabilitaciones para mejorar su calidad de vida. Como se ha explicado, esta aplicación cuenta con dos partes, una para los médicos o responsables y otra para los pacientes. Las tareas realizadas en este \textit{sprint} son las siguientes:
+\begin{itemize}
+	\item Investigación sobre plataformas de vídeo llamadas.
+	\item Creación de la estructura base de la página web.
+	\item Diseño e implementación de la base de datos.
+	\item Creación del login por usuario, guardando una \textit{cookie} para mantener la sesión.
+	\item \textit{Backend} de las páginas de los pacientes, donde se  incluye la creación de las llamadas, el calculo de la evolución a partir de los datos en la base de datos, la grabación de la cámara del paciente y subida a un servidor propio de la universidad...
+	\item \textit{Backend} de las páginas de los responsables.
+\end{itemize}
+
+Tras desarrollar la aplicación se empezaron con las tareas de explotación de la aplicación, en donde se cogieron los dispositivos para los pacientes (AQUI ESCRIBIR EL MODELO DEL BICHO0 Y LA CAMARA) y se les instalaron todo el \textit{software} necesario para funcionar correctamente, y con ello poder grabar los vídeos y subirlos a un servidor propio. Debido a la aparición del COVID-19 y el posterior confinamiento sufrido y las consiguientes medidas de seguridad no se pudo empezar a instalar los dispositivos en las casa de los pacientes.
+\subsection{\textit{Sprint}1: 17/02/2020 - 26/02/2020}
+Este es el primer \textit{sprint} real del desarrollo de la parte del proyecto de visión artificial, en el se realizaron las primeras tareas de creación del repositorio en \textit{GitHub} y la creación de la estructura del mismo. Además, se creo el documento \textit{LaTeX} a partir de la plantilla de la asignatura. Las tareas más relevantes en este primer \textit{sprint} fueron las relacionadas con la configuración de \textit{Gamma} y los primeros pasos en la investigación de algoritmos de visión por computador y detección de movimiento, como son \textit{Detectron2} y \textit{PoseNet}.
+\subsection{\textit{Sprint}2: 27/02/2020 - 11/03/2020}
+En este \textit{sprint} se realizó una tarea fundamental dentro del desarrollo del proyecto, que es la investigación y elección del algoritmo de visión artificial para la obtención de la postura, que se usará en los fotogramas de los vídeos recogidos con la aplicación FIS-HUBU y compararlos con otros vídeos base para saber la exactitud del ejercicio. Esta tarea de investigación de los distintos algoritmos dio como resultado que el \textit{Dectectron2} (apartado~\ref{dectectron}) es ek algoritmo que más se amoldaba al problema del proyecto.
+
+Además, en este \textit{sprint} se realizaron las tareas de documentación necesarias sobre los algoritmos candidatos y sobre la selección del mejor.
+\subsection{\textit{Sprint}3: 12/03/2020 - 17/04/2020}
+En este tercer \textit{sprint} se profundizó en la investigación de los distintos algoritmos y modelos de \textit{Detectron2}. En esta investigación se encontró un modelo ya entrenado capaz de obtener la posición de la persona fotograma a fotograma de una forma extraordinariamente precisa.
+
+Una vez se encontró el modelo se pasó a interpretar la salida del modelo, para poder ajustarlo (principalmente para que solo detecte la persona que mejor identifica, normalmente el centro de la pantalla) y obtener datos para su posterior tratamiento y comparación.
+
+Por último, en este \textit{sprint} se realizaron diversas tareas de documentación.
+
 \section{Estudio de viabilidad}
 
 \subsection{Viabilidad económica}
