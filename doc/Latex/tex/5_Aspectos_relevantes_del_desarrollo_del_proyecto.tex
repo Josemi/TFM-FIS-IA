@@ -291,6 +291,74 @@ Como se comentó en apartados anteriores, una vez se tienen los puntos, se ha de
 \begin{itemize}
 	\item Si existe más de una persona detectada se selecciona la primera, ya que es la que tiene un mayor \textit{score} y por lo tanto el modelo cree que puede ser con mayor probabilidad una persona.
 	\item Si una predicción no dispone de todos los puntos no se tiene en cuenta. En la práctica con las pruebas que se han realizado esto solo pasa cuando se pasa un objeto por ciertos puntos del cuerpo, cuando ocurre estos hay algunos fotogramas, muy pocos, que no detectan todos los puntos.
-	\item Se compara el fotograma actual con un conjunto de fotogramas anteriores, si la diferencia entre ellos son muy grandes se descarta el fotograma ya que se entiende que el modelo no ha procesado bien la imagen. Esto ocurre también cuando se pasa un objeto por alguna parte del cuerpo, ya que cuando esto ocurre a veces algunos fotogramas dan predicciones erróneas que se pueden detectar con una simple comparación con una ventana deslizante de posiciones.
 \end{itemize}
 
+\section{Primeras versiones comparación de posiciones}
+Una vez se había comprobado que el sistema de cálculo de posiciones era correcto se pasó a la parte final del desarrollo del proyecto, la comparación de posiciones. Para esta primera versión de la comparación de posiciones se decidió usar los ángulos calculados a partir de los puntos y puntos medios de las posiciones. Se decidió usar los ángulos ya que es la única medida calculada que no depende de la posición del usuario grabado.
+\subsection{División de la comparación}
+La principal característica, a parte del uso de los ángulos, de la primera versión de la comparación de posiciones fue la división de la comparación en distintas partes para poder dar un peso mayor o menor a cada una de ellas. Esto se vio necesario observan los vídeos de ejemplos de los ejercicios que se proporcionaron, ya que había ejercicios donde se centraban en los brazos, otros en las piernas...
+
+La división que se planteó en esta versión es (Figura~\ref{fig:estiradosAbajo2}):
+\begin{itemize}
+	\item Brazos: en esta parte se encuentran unicamente los ángulos de los codos de ambos brazos (5 y 6).
+	\item Torso: ángulos de la cadera con la columna (7 y 8), ángulos de los hombros (3 y 4) y ángulos del cuello con respecto a los hombros (1 y 2).
+	\item Piernas: ángulos de la cadera con el fémur de cada pierna (9 y 10) y ángulos de cada rodilla (11 y 12).
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{estiradosAbajo2}
+	\caption{Ejemplo ángulos sobre los que se calcula la diferencia entre posiciones.}
+	\label{fig:estiradosAbajo2}
+\end{figure}
+
+La comparación de cada una de las partes se realiza calculando la suma de los valores absolutos de las restas de los valores entre las dos posiciones.
+
+\subsection{Problema con los ángulos de los brazos}
+Tras haber implementado la primera versión se realizaron unas pruebas para comprobar su funcionamiento. En esta pruebas se encontró un fallo muy importante, ya que los ángulos que se obtenían eran hasta 180 grados, ya que si se superaba este valor el ángulo se calculaba sobre el otro lado del punto central, es decir, nunca es superior a 180 grados. Es por ello que  posiciones como las que se pueden ver en las figuras~\ref{fig:brazosAbajo} y~\ref{fig:brazosArriba} tiene ángulos en ambos codos muy parecidos, aunque su posición sean casi contrarias.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{brazosAbajo}
+	\caption{Posición con los codos en 90 grados mirando hacia abajo.}
+	\label{fig:brazosAbajo}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{brazosArriba}
+	\caption{Posición con los codos en 90 grados mirando hacia arriba.}
+	\label{fig:brazosArriba}
+\end{figure}
+
+Además, se descubrió que este error con los braozs se daba a demás de en los codos en los ángulos de los hombros, ya que posiciones como las que se pueden ver en las figuras~\ref{fig:estiradosAbajo} y~\ref{fig:estiradosArriba} obtienen ángulos muy parecidos, por la misma razón que pasaba con los codos.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{estiradosAbajo}
+	\caption{Posición con los hombros en 45 grados mirando hacia abajo.}
+	\label{fig:estiradosAbajo}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{estiradosArriba}
+	\caption{Posición con los hombros en 45 grados mirando hacia arriba.}
+	\label{fig:estiradosArriba}
+\end{figure}
+
+Para poder solucionar estos problemas lo primero que se hizo fue pasar los ángulos de los hombros que se encontraban en la comparación del torso a la comparación de los brazos. Después, para ambas partes se implemento el siguiente algoritmo para poder penalizar estos casos especiales:
+\begin{enumerate}
+	\item Comparar el ángulo (codo y hombro), si este está en un rango de 180 más menos un parámetro se dice que el codo u hombro está estirado y se le da el tipo 0.
+	\item Si no está en tipo 0 se comprueba la altura del siguiente punto, en el caso del codo el siguiente punto es la muñeca, y en el caso del hombro el punto del codo. Se comprueba entonces si este segundo punto está por encima, y entonces se le da el tipo 1, sino se le da el tipo 2.
+	\item Se comparan los tipos de las dos posiciones que se están comparando. Si cualquiera de las dos posiciones está estirada (tipo 0) entonces no se penaliza sea cual sea el tipo de la otra posición. Por el contrario, si ninguno de las dos posiciones tienen tipo 0, y sus tipos son distintos (uno tiene tipo 1 y le otro tipo 2) se penaliza sumando a la resta del absoluto de los ángulos un valor parametrizado, ya que se encuentran en posiciones muy distintas.
+\end{enumerate}
+
+Una vez se implementó esta nueva comparación para los brazos se realizaron una serie de imágenes de prueba para poder confirmar el correcto funcionamiento de la nueva implementación.
+
+\subsection{Umbral y penalización}
+Como se ha comentado, en esta segunda versión, que se centró en el problema con los brazos, se han utilizado dos parámetros un umbral para definir el rango en el que se considera que un ángulo está estirado o no, y la penalización que se aplica si los tipos son distintos.
+
+Al principio se puso un umbral de 10 grados, que para las imágenes de pruebas que se obtuvieron se recogieron buenos resultados, diferenciando correctamente cuando una de las partes estaba o no estirada. Lo mejor de que este valor sea un parámetro es que se puede modificar dependiendo del ejercicio a realizar.
+
+Por otro lado, al implementar la penalización se utilizó el mismo valor tanto para los codos como para los hombros, con una valor de 180 grados de penalización. Pero en comprobaciones que se realizaron después se observó que penalizar a los hombros con el mismo valor que a los codos no era correcto, ya que la diferencia no era tan grande. Es por ello que se dividió este parámetro de penalización en dos, uno para los codos a 180 y otro para los hombros a 90. Aun así, como pasa con el umbvral, estos valores se puede modificar dependiendo del ejercicio a comparar.
