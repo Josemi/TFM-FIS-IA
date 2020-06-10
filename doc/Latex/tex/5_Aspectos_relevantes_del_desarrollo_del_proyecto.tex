@@ -293,7 +293,7 @@ Como se comentó en apartados anteriores, una vez se tienen los puntos, se ha de
 	\item Si una predicción no dispone de todos los puntos no se tiene en cuenta. En la práctica con las pruebas que se han realizado esto solo pasa cuando se pasa un objeto por ciertos puntos del cuerpo, cuando ocurre estos hay algunos fotogramas, muy pocos, que no detectan todos los puntos.
 \end{itemize}
 
-\section{Primeras versiones comparación de posiciones}
+\section{Primeras versiones comparación de posiciones} \label{PrimeraVersion}
 Una vez se había comprobado que el sistema de cálculo de posiciones era correcto se pasó a la parte final del desarrollo del proyecto, la comparación de posiciones. Para esta primera versión de la comparación de posiciones se decidió usar los ángulos calculados a partir de los puntos y puntos medios de las posiciones. Se decidió usar los ángulos ya que es la única medida calculada que no depende de la posición del usuario grabado.
 \subsection{División de la comparación}
 La principal característica, a parte del uso de los ángulos, de la primera versión de la comparación de posiciones fue la división de la comparación en distintas partes para poder dar un peso mayor o menor a cada una de ellas. Esto se vio necesario observan los vídeos de ejemplos de los ejercicios que se proporcionaron, ya que había ejercicios donde se centraban en los brazos, otros en las piernas...
@@ -361,4 +361,266 @@ Como se ha comentado, en esta segunda versión, que se centró en el problema co
 
 Al principio se puso un umbral de 10 grados, que para las imágenes de pruebas que se obtuvieron se recogieron buenos resultados, diferenciando correctamente cuando una de las partes estaba o no estirada. Lo mejor de que este valor sea un parámetro es que se puede modificar dependiendo del ejercicio a realizar.
 
-Por otro lado, al implementar la penalización se utilizó el mismo valor tanto para los codos como para los hombros, con una valor de 180 grados de penalización. Pero en comprobaciones que se realizaron después se observó que penalizar a los hombros con el mismo valor que a los codos no era correcto, ya que la diferencia no era tan grande. Es por ello que se dividió este parámetro de penalización en dos, uno para los codos a 180 y otro para los hombros a 90. Aun así, como pasa con el umbvral, estos valores se puede modificar dependiendo del ejercicio a comparar.
+Por otro lado, al implementar la penalización se utilizó el mismo valor tanto para los codos como para los hombros, con una valor de 180 grados de penalización. Pero en comprobaciones que se realizaron después se observó que penalizar a los hombros con el mismo valor que a los codos no era correcto, ya que la diferencia no era tan grande. Es por ello que se dividió este parámetro de penalización en dos, uno para los codos a 180 y otro para los hombros a 90. Aun así, como pasa con el umbral, estos valores se puede modificar dependiendo del ejercicio a comparar.
+
+\section{Versión 3 de comparación, uso de medias}
+Una vez se creía que la comparación de posiciones era correcta había que dar sentido a los valores obtenidos. La forma que se encontró más oportuna para poder realizar esta operación fue el uso de la media de los valores obtenidos en las distintas zonas con las que se trabaja (brazos, piernas y torso).
+
+Además, se implementó el cálculo de la media de tal manera que al aplicar los distintos pesos a las zonas el valor final obtenido siguiese siendo un valor entre 0 y 180 (la distancia máxima que puede haber entre dos ángulos).
+
+Teniendo esto en cuenta el resultado final se calcula con la siguiente fórmula (siendo $total$ la suma de los tres pesos):
+\begin{equation}
+\begin{split}
+resultado = (pesoBrazos/total)*compBrazos +\\ (pesoPiernas/total)*compPiernas (pesoTorso/total)*compTorso
+\end{split}
+\end{equation}
+
+\section{Error en brazos, nueva posición y comparación}
+Una vez se creía que se tenía una versión final para la comparación de posiciones, ya que las pruebas con las imágenes que antes daban problemas se daba un buen resultado, se probó con lo vídeos que se habían grabado en la primera recogida de datos de prueba. En esta segunda prueba sobre esta versión se encontró un error muy grave, ya que se penalizaban situaciones en los brazos que nunca se deberían de penalizar.
+
+Estos casos donde se penalizaban eran cuando las manos pasaban de estar por encima de los codos a pasar por debajo, o viceversa. Un ejemplo de esta situación se puede ver en la figura~\ref{fig:errorbrazos}, donde se la diferencia en los brazos entre las dos imágenes se debería calcular únicamente con la diferencia de los ángulos de los codos, pero que con la implementación de la versión 3, además de la diferencia entre los ángulos, se sumaría una penalización de 180 grados a la diferencia.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{errorbrazos}
+	\caption{Ejemplo de error en la comparación de brazos.}
+	\label{fig:errorbrazos}
+\end{figure}
+
+En esta situación, se plantearon una serie de posibles soluciones a este problema ya reincidente. Primero se intentó dar solución al problema manteniendo el sistema de la posición y el resto de comparaciones que daban errores, pero no se ideó una solución plausible que solucionara todos los problemas encontrados en las diversas versiones de la comparación de posiciones. Es por ello que se pasó a hacer una cambio más radical, subiendo a un nivel superior el problema, a la clase de \textit{Python} de la posición.
+
+\subsection{Nueva versión clase posición}
+
+En la primera versión de esta clase, los ángulos se calculaban de forma que nunca eran superiores a 180 grados, lo que daba la necesidad de penalizar ciertas situaciones.
+
+En la segunda versión de la clase se eliminó la condición de que los ángulos fuesen solo de 180 grados (salvo para los ángulos del cuello y de la cadera con el torso, ya que estos ángulos no pueden ser mayores de 180 por fisionomía humana). Para poder expresar el ángulo en un rango de 360 grados se implementó el siguiente algoritmo que utiliza la función anterior de cálculo del ángulo entre 3 puntos:
+
+\begin{lstlisting}[language=Python]
+#p1,p2,p3: puntos a calcular el angulo,
+# p2 debe ser el punto central
+#lado: 0 izquierda, 1 derecha
+def calcularAngulo(self,p1,p2,p3,lado):
+     flag=False
+     ang = self.calcularAuxAngulo(p1,p2,p3)
+     
+     #Cuando la recta que une los dos primeros
+     # puntos es una linea vertical
+     if (p2[0]-p1[0]) ==0:
+         
+         #Lado derecho
+         if lado:
+             #Si la posicion esta menos a la derecha 
+             #se ha de cambiar el angulo
+             if p3[0]<p2[0]:
+                 flag=True
+         
+         #Lado izquierdo
+         else:
+             #Si la posicion esta menos 
+             #a la izquierda se ha de cambiar el angulo
+             if p3[0]>p2[0]:
+                 flag=True
+         
+         #Cambio del angulo
+         if flag:
+             ang = 360 - ang
+     else:
+         #Calculo de la ecuacion de la recta sustituyendo
+         # el valor de x por el valor del tercer punto
+         y = ((p2[1]-p1[1])*(p3[0]-p1[0])/(p2[0]-p1[0]))+p1[1]
+         
+         #Si esta la tercera parte por encima de la recta que 
+         #hacen las dos primera entonces se cambia el angulo
+         if p3[1] > y:
+             ang = 360 - ang
+     
+     return ang
+\end{lstlisting}
+
+Los pasos que sigue este algoritmo es:
+\begin{enumerate}
+	\item Calcular el ángulo en un rango de 180 grados, con la implementación de la anterior versión de la clase de la posición.
+	\item Comprobar si los dos primeros puntos, de los tres estudiados, forman una línea vertical comprobando la resta en sus valores del eje x. Si som iguales ir a 3, sino ir a 4.
+	\item Si los dos puntos forman una línea vertical no tiene sentido comparar la altura con el tercer punto. Es por ello que lo que se hace es comprobar, dependiendo del lado (izquierda o derecho), la posición del tercer punto analizando si este este más cercano eal centro del cuerpo (el ángulo se mantiene igual), o si por el contrario está más al exterior del cuerpo donde se realiza una resta de 360 grados menos el ángulo calculado.
+	\item Si por el contrario los dos puntos no están en una línea vertical (caso más común) se calcula la ecuación de la recta con estos dos primeros puntos. En esta ecuación de la recta se sustituye el valor de x por el valor de este eje del tercer punto. Por último se comprueba si el valor de y calculado con la ecuación de la recta sustituyendo la x es superior (se mantiene el ángulo) o inferior al valor y del tercer punto donde habría que cambiar el valor del ángulo por 360 menos el ángulo calculado al principio del algoritmo.
+	\item Se devuelve el valor calculado del ángulo.
+\end{enumerate}
+
+\subsection{Nueva versión comparación}
+Una vez se había modificado la clase de la posición era necesario hacer una serie de cambios en la comparación de éstas. En este caso, al realizar estos cambios, ya hacía falta <<discriminar>> la comparación de los brazos, ya que ahora todos se calculan de la misma forma y no se necesita ningún umbral ni penalización. Además, aprovechando que no había que realizar ninguna discriminación, por la zona que se estuviese comparando, se realizó una factorización del código implementado para reducir el código repetido.
+
+Para esta cuarta versión de la comparación de las posiciones se realizaron dos funciones. La primera función permite el cálculo de la media de la diferencia entre los ángulos de las zonas pasadas. El código de esta función se puede ver a continuación:
+
+\begin{lstlisting}[language=Python]
+#pos1,pos2: posiciones a comparar
+#zonas: lista de las zonas a comparar
+# zonas sin especificar la parte izq o drch
+def comparacionZona(pos1,pos2,zonas):
+	#Partes derecha e izquierda
+	partes=["D","I"]
+	#Resultado iniciado a 0
+	res = 0.0
+	
+	#Recorrer las partes
+	for i in partes:
+		#Recorrer las zonas
+		for j in zonas:
+			#aux es la diferencia entre los angulos
+			aux = abs(eval("pos1."+j+i)-eval("pos2."+j+i))
+	
+			#Si la diferencia es mayor de 180
+			# grados se coge el otro lado para
+			# mantener la distancia minima
+			if aux > 180:
+				res += (360-aux)
+			else:
+				res+=aux
+	
+	#Se devuelve el valor final entre el
+	#numero de elementos sumados
+	return res/(len(partes)*len(zonas))
+\end{lstlisting}
+
+Como se puede ver en el código, esta implementación permite la comparación de todas las zonas de la posición y siempre devuelve una diferencia media entre las zonas comparadas que nunca supera los 180 grados, es decir, siempre devuelve la distancia mínima entre los ángulos.
+
+Pero para poder dar distintos pesos a las distintas zonas a comparar se implementó la segunda función que llama a la función anterior, \texttt{comparacionZona}. El código de esta función final que devuelve la diferencia media aplicando los pesos se puede ver a continuación:
+
+\begin{lstlisting}[language=Python]
+#pos1,pos2 posiciones a comparar
+#pesos: diccionario con los pesos de
+# cada zona
+def compararPosiciones(pos1,pos2,pesos={"brazos":1,
+										"piernas":1,
+										"torso":1}):
+    zonas={"brazos":["angCodo","angHombro"],
+    	  "piernas":["angRodilla","angCadera"],
+    	  "torso":["angCaderaTorso","angCuelloSup"]}
+    res=0
+    total=0
+    
+    #Se recoge el peso total
+    for i in pesos:
+    	#Si no esta en las keys de la zona se lanza
+    	# una excepcion
+        if i not in zonas:
+            raise Exception("Excepcion")
+        total+=pesos[i]
+        
+    #Se recorren los distintos tipos de zonas
+    # y se les aplica el peso a la comparacion
+    for i in zonas:
+        res+=(pesos[i]/total)*
+        	 comparacionZona(pos1,pos2,zonas[i])
+
+	#Calculo del porcentaje entorno a 180
+    porcentaje = res*100/180
+ 
+    return res,100-porcentaje
+\end{lstlisting}
+
+Como se puede ver en el código, la implementación recorre las distintas zonas de las cuales calcula la comparación entre las posiciones y le aplica el peso considerado. Además, una vez calculada la diferencia final, al estar está entre 0 y 180 grados por utilizar las medias, se calcula el porcentaje inverso de exactitud entre las dos posiciones. Este porcentaje se interpreta como el porcentaje de exactitud entre las posiciones, siendo el 100\% el valor máximo donde las dos posiciones son totalmente iguales.
+
+\section{Comprobación de la última versión}
+Una vez se terminó de implementar estas nuevas versiones se probaron con las imágenes de la sección~\ref{PrimeraVersion} que la implementación funcionaba correctamente con los datos que las primeras dos versiones tenían grandes problemas. Después, para poder probar el funcionamiento y sobre todo el rendimiento de la implementación se desarrolló unas funciones que permiten recorrer todos los vídeos de una carpeta y de cada vídeo comparar un fotograma con el siguiente de ese mismo vídeo (objetivo principal del proyecto). Cabe comentar en que esta comparación se ha dado el mismo peso a todas las zonas comparadas. Gracias a estas funcionas se pudo obtener los siguientes datos de cada uno de los vídeos:
+\begin{itemize}
+	\item Media de la diferencia de los grados en todo el vídeo.
+	\item Diferencia máxima en grados en todo el vídeo.
+	\item Diferencia mínima en grados en todo el vídeo.
+	\item Desviación típica entre las diferencias de los grados.
+	\item Media del porcentaje de exactitud.
+	\item Porcentaje máximo de exactitud.
+	\item Porcentaje mínimo de exactitud.
+	\item Desviación típica de los porcentajes.
+	\item Número de fotogramas en el vídeo.
+	\item Tiempo de obtención de las posiciones del vídeo.
+	\item Tiempo de comparación de las posiciones del vídeo.
+	\item Tiempo de cálculo de estadísticas de las comparaciones del vídeo.
+	\item Tiempo total.
+	\item Tiempo total empleado por fotograma.
+\end{itemize}
+
+Los resultados obtenidos en esta fase se pueden ver en:
+\begin{itemize}
+	\item Resultados diferencia en grados: tabla~\ref{tab:difgra}.
+	\item Resultados diferencias en porcentajes: tabla~\ref{tab:difpor}.
+	\item Resultados tiempos de ejecución: tabla~\ref{tab:tiempos}.
+\end{itemize}
+
+\begin{table}[h]
+	\centering
+	\resizebox{\columnwidth}{!}{
+\begin{tabular}{lrrrr}
+	\toprule
+	Vídeo &  MediaGrados  &  GradosMáximos &  GradosMínimos &  DesviaciónGrados \\
+	\midrule
+	depie &     $5.26$ &      $34.89$ &       $0.46$ &          $5.93$ \\
+	sentado1 &     $2.68$ &      $26.07$ &       $0.05$ &          $3.01$\\
+	sentado6-camiseta &     $2.36$ &       $5.27$ &       $0.32$ &          $0.96$\\
+	sentado2-cruzado-480 &     $2.74$ &      $14.59$ &       $0.58$ &          $1.72$\\
+	sentado4-remangado &     $2.78$ &      $23.80$ &       $0.22$ &          $2.96$\\
+	sentado2-cruzado &     $2.79$ &      $15.35$ &       $0.40$ &          $1.81$\\
+	sentado3-caja &     $2.62$ &      $34.32$ &       $0.15$ &          $4.13$\\
+	sentado5-chaqueta-abierta&     $2.96$ &      $17.29$ &       $0.42$ &          $1.94$\\
+	\bottomrule
+\end{tabular}
+}
+\caption{Tabla con las estadísticas de las diferencias en grados.}
+\label{tab:difgra}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\resizebox{\columnwidth}{!}{
+\begin{tabular}{lrrrr}
+	\toprule
+	Vídeo&  PorcMedio &  PorcMáximo &  PorcMínimo &  DesvPorcentaje\\
+	\midrule
+	depie&        $97.08$ &         $99.74$ &         $80.61$ &              $3.29$\\
+	sentado1 &        $98.51$ &         $99.97$ &         $85.52$ &              $1.67$\\
+	sentado6-camiseta &        $98.69$ &         $99.82$ &         $97.07$ &              $0.53$\\
+	sentado2-cruzado-480 &       $98.48$ &         $99.68$ &         $91.89$ &              $0.95$\\
+	sentado4-remangado &       $98.46$ &         $99.88$ &         $86.78$ &              $1.65$\\
+	sentado2-cruzado &        $98.45$ &         $99.78$ &         $91.47$ &              $1.01$\\
+	sentado3-caja &        $98.54$ &         $99.92$ &         $80.93$ &              $2.29$\\
+	sentado5-chaqueta-abierta &        $98.35$ &         $99.76$ &         $90.39$ &              $1.08$\\
+	\bottomrule
+\end{tabular}
+}
+\caption{Tabla con las estadísticas de las diferencias en porcentajes de exactitud.}
+\label{tab:difpor}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\resizebox{\columnwidth}{!}{
+		\begin{tabular}{lrrrrrr}
+	\toprule
+	Vídeo&  NFrames &  TiempoObtPos (s) &  TiempoComp (s) &  TiempoEst (s) &  TiempoTotal (s) &  Tiempo/Frame \\
+	\midrule
+	depie&$258$ &          $26.704819$ &           $0.045619$ &            $0.000168$ &    $26.750605$ &      $0.103685$ \\
+	sentado1&$445$ &          $49.113378$ &           $0.075400$ &            $0.000146$ &    $49.188924$ &      $0.110537$ \\
+	sentado6-camiseta&$194$ &          $21.433898$ &           $0.027136$ &            $0.000100$ &    $21.461134$ &      $0.110624$ \\
+	sentado2-cruzado-480&$286$ &          $31.532470$ &           $0.039944$ &            $0.000111$ &    $31.572524$ &      $0.110393$ \\
+	sentado4-remangado&$219$ &          $23.847520$ &           $0.030736$ &            $0.000101$ &    $23.878356$ &      $0.109034$ \\
+	sentado2-cruzado&$286$ &          $32.729511$ &           $0.040728$ &            $0.000121$ &    $32.770360$ &      $0.114582$ \\
+	sentado3-caja&$299$ &          $32.811822$ &           $0.042313$ &            $0.000112$ &    $32.854246$ &      $0.109880$ \\
+	sentado5-chaqueta-abierta&$281$ &          $30.815606$ &           $0.039650$ &            $0.000108$ &    $30.855364$ &      $0.109806$ \\
+	\bottomrule
+\end{tabular}
+}
+\caption{Tabla con los tiempos de la ejecución.}
+\label{tab:tiempos}
+\end{table}
+
+Como se puede observar, los resultados comparando los fotogramas de un mismo vídeo dan muy buenos resultados, con medias de porcentaje de exactitud que no bajan del $97\%$, lo que significa que ninguna comparación tiene una media superior a $5.4^{\circ}$ de diferencia.
+
+Si se observan los porcentajes máximos de exactitud y los grados mínimos de diferencia se observan valores muy positivos, siendo los porcentajes muy cercanos al $100\%$ y los grados muy similares a $0^{\circ}$, como cabría de esperar ya que en todo el vídeo es muy probable que haya al menos dos fotogramas contiguos que se difieran muy poco al no haber casi movimiento.
+
+Otro dato importante, que principalmente puede servir para detectar fallos en la posición obtenida por la red neuronal, es el porcentaje mínimo de exactitud y el correspondiente grado máximo de diferencia. Observando estos datos se puede ver como los grados máximos de diferencia entre dos fotogramas de todos los vídeos es de unos $35^{\circ}$, que ocurren en el vídeo donde se está de pie. Tras observar en que fotogramas se haya este máximo se vio como este valor se debía a un pequeño fallo en la detección de la posición por parte de la red neuronal. Pero este <<problema>> no es importante debido a que este tipo de movimientos no se realizan en los ejercicios de ejemplos de las rehabilitaciones reales a personas con \textit{Parkinson} , y a que no afecta en gran medida (debido al gran número de fotogramas) a las otras estadísticas, sobre todo a la más importante, la media.
+
+Por último, tras haber comprobado que los algoritmos daban unos resultados bastante positivos, se analizaron los tiempos de ejecución, ya que no había que olvidarse que este proyecto se iba a juntar con el José Luis Garrido Labrador, para poder realizar estas operaciones en un flujo de imágenes. Es por ello que los algoritmos, además de usar la mínima capacidad de memoria posible, debían de ser rápidos. Este tipo de estudios ya se habían realizado para obtener el mejor modelo de red neuronal que proporcionase los mejores resultados posibles en el menor tiempo posible, por lo que ahora había que comprobar el tiempo de ejecución de todo el proceso, es decir,  el cálculo de la posición a partir de la salida de la red neuronal, después la comparación de las posiciones obtenidas y por último el cálculo de estadísticas que permitan obtener un resultado legible y comprensible.
+
+Observando los tiempos de ejecución, tabla~\ref{tab:tiempos}, se puede ver como sin lugar a duda la ejecución del modelo de la red neuronal y el posterior cálculo de la posición es donde se invierte más tiempo (aun teniendo el modelo ya cargado en memoria como se haría en el despliegue final con la estructura de flujos del compañero). Si se mira al resto de tiempos se puede ver como la implementación de la comparación de posiciones es muy óptima, siendo el tiempo invertido en esta tarea en el vídeo más largo tan solo de $0.07$ segundos. Por último, el calculo de estadísticas sobre las comparaciones realizada también es muy rápida, no superando en ninguno de los vídeos los $0.00017$ segundos.
+
+Como se ha comentado, tras realizar todas la pruebas, se concluyó en que estas versiones del cálculo de posición y de comparación de posiciones serían las definitivas. Es por ello que interesaba saber el tiempo total invertido para realizar el proceso de obtener la posición de un fotograma, comparar esta posición con la siguiente y obtener las estadísticas de esta comparación. Como se puede ver en la tabla~\ref{tab:tiempos}, el tiempo medio de procesamiento de cada fotograma es de $0.10981756537573605$ segundos, un resultado muy bueno si se tiene en cuenta todo el proceso que lleva detrás.
+
