@@ -294,7 +294,7 @@ Como se comentó en apartados anteriores, una vez se tienen los puntos, se ha de
 \end{itemize}
 
 \section{Primeras versiones comparación de posiciones} \label{PrimeraVersion}
-Una vez se había comprobado que el sistema de cálculo de posiciones era correcto se pasó a la parte final del desarrollo del proyecto, la comparación de posiciones. Para esta primera versión de la comparación de posiciones se decidió usar los ángulos calculados a partir de los puntos y puntos medios de las posiciones. Se decidió usar los ángulos ya que es la única medida calculada que no depende de la posición del usuario grabado.
+Una vez se había comprobado que el sistema de cálculo de posiciones era correcto se pasó a desarrollar la comparación de posiciones. Para esta primera versión de la comparación de posiciones se decidió usar los ángulos calculados a partir de los puntos y puntos medios de las posiciones. Se decidió usar los ángulos ya que es la única medida calculada que no depende de la posición del usuario grabado.
 \subsection{División de la comparación}
 La principal característica, a parte del uso de los ángulos, de la primera versión de la comparación de posiciones fue la división de la comparación en distintas partes para poder dar un peso mayor o menor a cada una de ellas. Esto se vio necesario observan los vídeos de ejemplos de los ejercicios que se proporcionaron, ya que había ejercicios donde se centraban en los brazos, otros en las piernas...
 
@@ -315,7 +315,7 @@ La división que se planteó en esta versión es (Figura~\ref{fig:estiradosAbajo
 La comparación de cada una de las partes se realiza calculando la suma de los valores absolutos de las restas de los valores entre las dos posiciones.
 
 \subsection{Problema con los ángulos de los brazos}
-Tras haber implementado la primera versión se realizaron unas pruebas para comprobar su funcionamiento. En esta pruebas se encontró un fallo muy importante, ya que los ángulos que se obtenían eran hasta 180 grados, ya que si se superaba este valor el ángulo se calculaba sobre el otro lado del punto central, es decir, nunca es superior a 180 grados. Es por ello que  posiciones como las que se pueden ver en las figuras~\ref{fig:brazosAbajo} y~\ref{fig:brazosArriba} tiene ángulos en ambos codos muy parecidos, aunque su posición sean casi contrarias.
+Tras haber implementado la primera versión se realizaron unas pruebas para comprobar su funcionamiento. En esta pruebas se encontró un fallo muy importante, ya que los ángulos que se obtenían eran hasta 180 grados, si se superaba este valor el ángulo se calculaba sobre el otro lado del punto central, es decir, nunca es superior a 180 grados. Es por ello que  posiciones como las que se pueden ver en las figuras~\ref{fig:brazosAbajo} y~\ref{fig:brazosArriba} tiene ángulos en ambos codos muy parecidos, aunque su posición sean casi contrarias.
 
 \begin{figure}[h]
 	\centering
@@ -331,7 +331,7 @@ Tras haber implementado la primera versión se realizaron unas pruebas para comp
 	\label{fig:brazosArriba}
 \end{figure}
 
-Además, se descubrió que este error con los braozs se daba a demás de en los codos en los ángulos de los hombros, ya que posiciones como las que se pueden ver en las figuras~\ref{fig:estiradosAbajo} y~\ref{fig:estiradosArriba} obtienen ángulos muy parecidos, por la misma razón que pasaba con los codos.
+Además, se descubrió que este error con los brazos se daba a demás de en los codos en los ángulos de los hombros, ya que posiciones como las que se pueden ver en las figuras~\ref{fig:estiradosAbajo} y~\ref{fig:estiradosArriba} obtienen ángulos muy parecidos, por la misma razón que pasaba con los codos.
 
 \begin{figure}[h]
 	\centering
@@ -555,12 +555,12 @@ Los resultados obtenidos en esta fase se pueden ver en:
 	\midrule
 	depie &     $5.26$ &      $34.89$ &       $0.46$ &          $5.93$ \\
 	sentado1 &     $2.68$ &      $26.07$ &       $0.05$ &          $3.01$\\
-	sentado6-camiseta &     $2.36$ &       $5.27$ &       $0.32$ &          $0.96$\\
-	sentado2-cruzado-480 &     $2.74$ &      $14.59$ &       $0.58$ &          $1.72$\\
-	sentado4-remangado &     $2.78$ &      $23.80$ &       $0.22$ &          $2.96$\\
 	sentado2-cruzado &     $2.79$ &      $15.35$ &       $0.40$ &          $1.81$\\
+	sentado2-cruzado-480 &     $2.74$ &      $14.59$ &       $0.58$ &          $1.72$\\
 	sentado3-caja &     $2.62$ &      $34.32$ &       $0.15$ &          $4.13$\\
+	sentado4-remangado &     $2.78$ &      $23.80$ &       $0.22$ &          $2.96$\\
 	sentado5-chaqueta-abierta&     $2.96$ &      $17.29$ &       $0.42$ &          $1.94$\\
+	sentado6-camiseta &     $2.36$ &       $5.27$ &       $0.32$ &          $0.96$\\
 	\bottomrule
 \end{tabular}
 }
@@ -577,12 +577,12 @@ Los resultados obtenidos en esta fase se pueden ver en:
 	\midrule
 	depie&        $97.08$ &         $99.74$ &         $80.61$ &              $3.29$\\
 	sentado1 &        $98.51$ &         $99.97$ &         $85.52$ &              $1.67$\\
-	sentado6-camiseta &        $98.69$ &         $99.82$ &         $97.07$ &              $0.53$\\
-	sentado2-cruzado-480 &       $98.48$ &         $99.68$ &         $91.89$ &              $0.95$\\
-	sentado4-remangado &       $98.46$ &         $99.88$ &         $86.78$ &              $1.65$\\
 	sentado2-cruzado &        $98.45$ &         $99.78$ &         $91.47$ &              $1.01$\\
+	sentado2-cruzado-480 &       $98.48$ &         $99.68$ &         $91.89$ &              $0.95$\\
 	sentado3-caja &        $98.54$ &         $99.92$ &         $80.93$ &              $2.29$\\
+	sentado4-remangado &       $98.46$ &         $99.88$ &         $86.78$ &              $1.65$\\
 	sentado5-chaqueta-abierta &        $98.35$ &         $99.76$ &         $90.39$ &              $1.08$\\
+	sentado6-camiseta &        $98.69$ &         $99.82$ &         $97.07$ &              $0.53$\\
 	\bottomrule
 \end{tabular}
 }
@@ -599,12 +599,12 @@ Los resultados obtenidos en esta fase se pueden ver en:
 	\midrule
 	depie&$258$ &          $26.704819$ &           $0.045619$ &            $0.000168$ &    $26.750605$ &      $0.103685$ \\
 	sentado1&$445$ &          $49.113378$ &           $0.075400$ &            $0.000146$ &    $49.188924$ &      $0.110537$ \\
-	sentado6-camiseta&$194$ &          $21.433898$ &           $0.027136$ &            $0.000100$ &    $21.461134$ &      $0.110624$ \\
-	sentado2-cruzado-480&$286$ &          $31.532470$ &           $0.039944$ &            $0.000111$ &    $31.572524$ &      $0.110393$ \\
-	sentado4-remangado&$219$ &          $23.847520$ &           $0.030736$ &            $0.000101$ &    $23.878356$ &      $0.109034$ \\
 	sentado2-cruzado&$286$ &          $32.729511$ &           $0.040728$ &            $0.000121$ &    $32.770360$ &      $0.114582$ \\
+	sentado2-cruzado-480&$286$ &          $31.532470$ &           $0.039944$ &            $0.000111$ &    $31.572524$ &      $0.110393$ \\
 	sentado3-caja&$299$ &          $32.811822$ &           $0.042313$ &            $0.000112$ &    $32.854246$ &      $0.109880$ \\
+	sentado4-remangado&$219$ &          $23.847520$ &           $0.030736$ &            $0.000101$ &    $23.878356$ &      $0.109034$ \\
 	sentado5-chaqueta-abierta&$281$ &          $30.815606$ &           $0.039650$ &            $0.000108$ &    $30.855364$ &      $0.109806$ \\
+	sentado6-camiseta&$194$ &          $21.433898$ &           $0.027136$ &            $0.000100$ &    $21.461134$ &      $0.110624$ \\
 	\bottomrule
 \end{tabular}
 }
@@ -622,5 +622,36 @@ Por último, tras haber comprobado que los algoritmos daban unos resultados bast
 
 Observando los tiempos de ejecución, tabla~\ref{tab:tiempos}, se puede ver como sin lugar a duda la ejecución del modelo de la red neuronal y el posterior cálculo de la posición es donde se invierte más tiempo (aun teniendo el modelo ya cargado en memoria como se haría en el despliegue final con la estructura de flujos del compañero). Si se mira al resto de tiempos se puede ver como la implementación de la comparación de posiciones es muy óptima, siendo el tiempo invertido en esta tarea en el vídeo más largo tan solo de $0.07$ segundos. Por último, el calculo de estadísticas sobre las comparaciones realizada también es muy rápida, no superando en ninguno de los vídeos los $0.00017$ segundos.
 
-Como se ha comentado, tras realizar todas la pruebas, se concluyó en que estas versiones del cálculo de posición y de comparación de posiciones serían las definitivas. Es por ello que interesaba saber el tiempo total invertido para realizar el proceso de obtener la posición de un fotograma, comparar esta posición con la siguiente y obtener las estadísticas de esta comparación. Como se puede ver en la tabla~\ref{tab:tiempos}, el tiempo medio de procesamiento de cada fotograma es de $0.10981756537573605$ segundos, un resultado muy bueno si se tiene en cuenta todo el proceso que lleva detrás.
+Cabe destacar las diferencias que existen entre los dos vídeos iguales pero con distinta calidad, sentado2-cruzado (720p) y sentado2-cruzado-480 (480p). Como se puede ver en la tabla~\ref{tab:tiempos}, la diferencia entre ambas ejecuciones se difiere en poco más de 1 segundo, que como era de esperar se encuentra en la diferencia en las fases de obtención de la posición a partir de la red neuronal y la clase implementada. Si se observan los resultados de la comparación de los vídeos, en las tablas~\ref{tab:difgra} y~\ref{tab:difpor}, se observa que apenas hay diferencias entre las dos ejecuciones. Teniendo esto en cuenta se puede asegurar que la reducción de calidad de los vídeos mejora el rendimiento de la herramienta manteniendo unos resultados correctos, al menos si la calidad mínima es 480p.
 
+Como se ha comentado, tras realizar todas la pruebas, se concluyó en que estas versiones del cálculo de posición y de comparación de posiciones serían las implementaciones prácticamente definitivas. Es por ello que interesaba saber el tiempo total invertido para realizar el proceso de obtener la posición de un fotograma, comparar esta posición con la siguiente y obtener las estadísticas de esta comparación. Como se puede ver en la tabla~\ref{tab:tiempos}, el tiempo medio de procesamiento de cada fotograma es de $0.10981756537573605$ segundos, un resultado muy bueno si se tiene en cuenta todo el proceso que lleva detrás.
+
+\section{Versión reducida}
+Tras tener la versión final implementada se vio necesario la reducción de la clase de la posición para poder ahorrar el mayor tiempo y el mayor uso de memoria posible, objetivo esencial al trabajar con un flujo de datos constante. Una vez se <<limpió>> la clase para obtener la versión reducida se ejecutaron las pruebas implementadas para la versión anterior para poder observar la mejoría en el tiempo, ya que la salida no se ve afectado porque solo se eliminaron los cálculos que no se utilizaban en la comparación de posiciones. Los nuevos tiempos de ejecución se puede ver en la tabla~\ref{tab:tiempos2}.
+
+\begin{table}[h]
+	\centering
+	\resizebox{\columnwidth}{!}{
+		\begin{tabular}{lrrrrrr}
+			\toprule
+			Vídeo&  NFrames &  TiempoObtPos (s) &  TiempoComp (s) &  TiempoEst (s) &  TiempoTotal (s) &  Tiempo/Frame \\
+			\midrule
+			depie&$258$ &   $26.686714$ &           $0.044117$ &            $0.000168$ &    $26.731000$ &      $0.103609$ \\
+			sentado1&$445$ &          $48.843925$ &           $0.076519$ &            $0.000145$ &    $48.920589$ &      $0.109934$ \\
+			sentado2-cruzado&$286$ &          $32.473181$ &           $0.039734$ &            $0.000139$ &    $32.513055$ &      $0.113682$ \\
+			sentado2-cruzado-480&$286$ &          $31.119080$ &           $0.039629$ &           $ 0.000138$ &    $31.158846$ &      $0.108947$ \\
+			sentado3-caja&$299$ &          $32.479402$ &           $0.042002$ &            $0.000120$ &    $32.521524$ &      $0.108768$ \\
+			sentado4-remangado&$219$ &          $23.759357$ &           $0.030473$ &            $0.000114$ &    $23.789944$ &      $0.108630$ \\
+			sentado5-chaqueta-abierta&$281$ &          $30.692482$ &           $0.039223$ &            $0.000116$ &    $30.731820$ &      $0.109366$ \\
+			sentado6-camiseta&$194$ &          $21.162456$ &           $0.028359$ &            $0.000105$ &    $21.190920$ &      $0.109232$ \\
+			\bottomrule
+		\end{tabular}
+	}
+	\caption{Tabla con los tiempos de la ejecución con la versión reducida de la posición.}
+	\label{tab:tiempos2}
+\end{table}
+
+Como se puede observar, la diferencia de tiempos apenas se ha visto afectada, reduciéndose solo un poco en el tiempo de obtención de la posición. El nuevo tiempo medio por fotograma es $0.1090208034675311$ segundos, lo que significa una mejoría de $0.0007967619082049487$. Este mejoría, al menos a primera vista, no parece gran cosa, pero teniendo en cuenta que se trabaja con flujos de datos cualquier mejora es válida. Además, hay que recordar que esta mejoría en el tiempo de ejecución va acompañada de una mejora en la memoria usada, ya que se necesita prácticamente la mitad de memoria para almacenar las variables de la posición comparado con las versiones anteriores. 
+
+\section{Preparación para flujos}
+Tras obtener las versiones definitivas de las implementaciones desarrolladas durante el proyecto, el siguiente paso consistió en pasar todas las implementaciones a un sistema de ficheros \textit{Python} (ya que antes se encontraban en \textit{Jupyter Notebook}). Además, se aprovechó este paso para poder comentar todas las funciones y clases implementadas.
