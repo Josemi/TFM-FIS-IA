@@ -31,7 +31,7 @@ Primero se realizó una investigación sobre las principales plataformas de víd
 	\item Plataforma gratuita.
 \end{itemize}
 
-Dentro de las plataformas que se investigaron están las más conocidas aplicaciones de este tipo como puede ser \textit{Skype}, pero al final se decidió utilizar \href{https://jitsi.org/}{\textit{Jitsi}} ya que proporciona todas las necesidades anteriormente comentadas, y además permite en un futuro poder crear un servidor propio donde poder modificar parámetros como la calidad de las llamadas.
+Dentro de las plataformas que se investigaron están las más conocidas aplicaciones de este tipo como puede ser \textit{Skype}, pero al final se decidió utilizar {\textit{Jitsi}\footnote{Jitsi: \url{https://jitsi.org/}} ya que proporciona todas las necesidades anteriormente comentadas, y además permite en un futuro poder crear un servidor propio donde poder modificar parámetros como la calidad de las llamadas.
 
 \subsection{Responsable}
 Parte de la aplicación donde los responsables pueden realizar las siguientes tareas:
@@ -66,7 +66,7 @@ La interfaz de la aplicación para tipo de usuario es sencilla y clara, como se 
 \end{figure}
 
 \subsection{Paciente}
-Los pacientes que van a utilizar la aplicación, son pacientesde edad avanzada con Parkinson y riesgo de caídas. Esto se ha tenido muy en cuenta tanto en el diseño como en la creación de la parte de la aplicación orientada en los pacientes, se ha intentado que esta parte sea lo más accesible posible, para que todos los pacientes puedan manejarse bien con la aplicación y así poder sacarle el mayor provecho.
+Los pacientes que van a utilizar la aplicación, son pacientes de edad avanzada con Parkinson y riesgo de caídas. Esto se ha tenido muy en cuenta tanto en el diseño como en la creación de la parte de la aplicación orientada en los pacientes, se ha intentado que esta parte sea lo más accesible posible, para que todos los pacientes puedan manejarse bien con la aplicación y así poder sacarle el mayor provecho.
 
 Para poder realizar una aplicación lo más accesible posible primero se ha de saber la forma que van a tener los pacientes de interactuar con ésta. En este caso los pacientes van a utilizar un mando de SNES\footnote{SNES: \textit{Super Nintendo Entertainment System}.} con botones de colores, es por ello que se ha aprovechado estos colores para poder mostrar en la interfaz de la aplicación que botón han de pulsar para realizar que acción. Además, se ha creado un botón de ayuda que carga una página donde se puede ver la acción que realiza cada botón del mando. Un ejemplo de la interfaz de esta aplicación se puede ver en la figura~\ref{fig:menupaciente}.
 
@@ -117,7 +117,7 @@ La fase de investigación de \textit{Detectron2} fue una de las más importantes
 
 Al ser una de las fases en las que más tiempo se ha dedicado, también es una de las fases donde surgieron más problemas tanto en la creación de los modelos, como en la visualización y el almacenamiento de los resultados obtenidos. Todos estos problemas serán comentados en este apartado.  
 \subsection{Selección del modelo}
-Tras haber elegido a \textit{Detrectron2} como herramienta de visión por computador para detectar a los pacientes y obtener de estos sus posiciones, elegir qué modelo, dentro de las posibilidades de la herramienta, utilizar para realizar estás tareas.
+Tras haber elegido a \textit{Detrectron2} como herramienta de visión por computador para detectar a los pacientes y obtener de estos sus posiciones, había que elegir qué modelo, dentro de las posibilidades de la herramienta, utilizar para realizar estás tareas.
 
 \textit{Dectectron2} permite dos formas de obtener un modelo:
 \begin{itemize}
@@ -125,7 +125,7 @@ Tras haber elegido a \textit{Detrectron2} como herramienta de visión por comput
 	\item Importación de modelos ya entrenados.
 \end{itemize}
 
-Ante la falta de datos para la creación de un modelo que diese buenos resultados, y al comprobar en la fase anterior que con la importación de modelos existentes se podían obtener buenos resultados, la investigación se centró en los modelos ya existentes entrenados por los creadores de la herramienta. Estos modelos de redes neuronales fueron entrenados en servidores \textit{Big Basin} de \textit{Facebook}, sucesores de los servidores \textit{Big Sur}, ambos orientados al uso de arquitecturas con varias GPUs potentes para el entrenamiento y uso de algoritmos de inteligencia artificial~\cite{bigbasin}. En concreto, estos modelos fueron entrenados con 8 Nvidia Tesla V100 con \textit{NVLink}, un tecnología que mejorar las interconexiones entre GPUs proporcionando mayor ancho de banda, haciendo el sistema más escalable~\cite{nvlink}. La mejora con otras generaciones de comunicación \textit{inter-GPU} se puede ver en la figura~\ref{fig:nvlink}.
+Ante la falta de datos para la creación de un modelo que diese buenos resultados, y al comprobar en la fase anterior que con la importación de modelos existentes se podían obtener buenos resultados, la investigación se centró en los modelos ya existentes entrenados por los creadores de la herramienta. Estos modelos de redes neuronales fueron entrenados en servidores \textit{Big Basin} de \textit{Facebook}, sucesores de los servidores \textit{Big Sur}, ambos orientados al uso de arquitecturas con varias GPUs potentes para el entrenamiento y uso de algoritmos de inteligencia artificial~\cite{bigbasin}. En concreto, estos modelos fueron entrenados con 8 Nvidia Tesla V100 con \textit{NVLink}, una tecnología que mejora las interconexiones entre GPUs proporcionando mayor ancho de banda, haciendo el sistema más escalable~\cite{nvlink}. La mejora con otras generaciones de comunicación \textit{inter-GPU} se puede ver en la figura~\ref{fig:nvlink}.
 
 \begin{figure}[h]
 	\centering
@@ -158,14 +158,14 @@ Los modelos creados en \textit{Detectron2} se diferencian en los siguientes tipo
 		\caption{Modelo de tipo COCO Instance Segmentation Baselines with Mask R-CNN, \texttt{mask\_rcnn\_R\_50\_DC5\_3x}.}
 		\label{fig:mask_rcnn_R_50_DC5_3x}
 	\end{figure}
-	\item COCO Person Keypoint Detection Baselines with Keypoint R-CNN (Figura~\ref{fig:keypoint_rcnn_R_101_FPN_3x}): modelos que detectan a las posiciones y unos puntos claves de ellas, estos puntos son nariz, ojos, orejas, hombros, codos, muñecas, cadera, rodilla y tobillos. Como se puede ver en la imagen de ejemplo, estos modelos predicen bastante bien la posición pero a veces detectan otras cosas como personas, por lo que se posteriormente se vio necesario un estudio sobre el \textit{threshold}.
+	\item COCO Person Keypoint Detection Baselines with Keypoint R-CNN (Figura~\ref{fig:keypoint_rcnn_R_101_FPN_3x}): modelos que detectan a las posiciones y unos puntos claves de ellas, estos puntos son nariz, ojos, orejas, hombros, codos, muñecas, cadera, rodilla y tobillos. Como se puede ver en la imagen de ejemplo, estos modelos predicen bastante bien la posición, pero a veces detectan otras cosas como personas, por lo que se posteriormente se vio necesario un estudio sobre el \textit{threshold}.
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=1\textwidth]{keypoint_rcnn_R_101_FPN_3x}
 		\caption{Modelo de tipo COCO Person Keypoint Detection Baselines with Keypoint R-CNN, \texttt{keypoint\_rcnn\_R\_101\_FPN\_3x}.}
 		\label{fig:keypoint_rcnn_R_101_FPN_3x}
 	\end{figure}
-	\item COCO Panoptic Segmentation Baselines with Panoptic FPN (Figura~\ref{fig:panoptic_fpn_R_101_3x}): modelos que segmentación como COCO Instance Segmentation Baselines with Mask R-CNN, obtienen resultados muy parecidos.
+	\item COCO Panoptic Segmentation Baselines with Panoptic FPN (Figura~\ref{fig:panoptic_fpn_R_101_3x}): modelos de segmentación como COCO Instance Segmentation Baselines with Mask R-CNN, obtienen resultados muy parecidos.
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=1\textwidth]{panoptic_fpn_R_101_3x}
@@ -204,7 +204,7 @@ Para realizar este estudio se analizó el tiempo de procesado e impresión de va
 \label{tab:modelos}
 \end{table}
 
-Como se puede observar, los datos obtenidos para los modelos son muy parecidos, sobre todo para los dos con menor periodo. Tras observar estos datos se decidió elegir al modelo \texttt{keypoint\_rcnn\_R\_50\_FPN\_3x} (es además el modelo con el que se hicieron las primera pruebas y con el que se decidió a \textit{Detectron2} como herramienta para detectar el movimiento) para utilizarlo en el resto del proyecto. Además, en este estudio se ha podido comprobar que los modelos trabajan correctamente sea cual sea el tipo de ropa que lleve la persona o si pasa un objeto por medio de la imagen (normalmente la posición es correcta, pero como se comentará más adelante a veces algunos fotogramas no son correctos), como se pueden ver en la figuras~\ref{fig:chaqueta} y~\ref{fig:caja}.
+Como se puede observar, los datos obtenidos para los modelos son muy parecidos, sobre todo para los dos con menor periodo ($T. Procesamiento/N. Fotogramas$). Tras observar estos datos se decidió elegir al modelo \texttt{keypoint\_rcnn\_R\_50\_FPN\_3x} (es además el modelo con el que se hicieron las primera pruebas y con el que se decidió a \textit{Detectron2} como herramienta para detectar el movimiento) para utilizarlo en el resto del proyecto. Además, en este estudio se ha podido comprobar que los modelos trabajan correctamente sea cual sea el tipo de ropa que lleve la persona o si pasa un objeto por medio de la imagen (normalmente la posición es correcta, pero como se comentará más adelante a veces algunos fotogramas no son correctos), como se pueden ver en la figuras~\ref{fig:chaqueta} y~\ref{fig:caja}.
 
 Se puede comentar que el modelo seleccionado usa una red neuronal piramidal de tipo FPN con ResNet y RCNN para la detección de la persona, y dentro de la persona sus puntos más importantes.
 
@@ -257,19 +257,30 @@ Si se analiza la salida tras predecir un imagen con el predictor creado (Default
 	\item \texttt{pred\_boxes}: Boxes, estructura propia de \textit{Dectectron2} donde se almacenan límites de donde entiende que está la persona en un \textit{tensor}, si se ha detectado más de una persona este Boxes estará creado por varios \textit{tensors}.
 	\item \texttt{scores}: \textit{tensor} con las probabilidades de que los elementos sean personas. Es este el valor que se compara con el \textit{threshold} para ver si se toma o no como una persona. Si existe más de un valor estos están ordenados de mayor a menor, este es el orden que se sigue en el resto de valores.
 	\item \texttt{pred\_classes}: \textit{tensor} con el índice de la clase, en este caso todos los elementos son 0 ya que solo detecta personas, que se identifican con este índice.
-	\item \texttt{pred\_keypoints}: \textit{tensor} con todos los puntos clave de cada elemento (persona) detectada. De cada elemento detectado, si la predicción ha sido correcta, se obtienen un total de 17 puntos, con sus valores $x$ e $y$. Después de investigar el posicionamiento de estos puntos se puede decir, como se ve en la figura~\ref{fig:puntos}, que los puntos representan (teniendo en cuenta que se han detectado todos los puntos y que la persona está mirando de frente al objetivo):
-	\begin{itemize}
-		\item 0: nariz.
-		\item 1 y 2: ojo izquierdo y derecho.
-		\item 3 y 4: oreja izquierda y derecha.
-		\item 5 y 6: hombro izquierdo y derecho.
-		\item 7 y 8: codo izquierdo y derecho.
-		\item 9 y 10: muñeca izquierda y derecha.
-		\item 11 y 12: parte izquierda de la cadera y derecha.
-		\item 13 y 14: rodilla izquierda y derecha.
-		\item 15 y 16: tobillo izquierdo y derecho.
-	\end{itemize}
+	\item \texttt{pred\_keypoints}: \textit{tensor} con todos los puntos clave de cada elemento (persona) detectada. De cada elemento detectado, si la predicción ha sido correcta, se obtienen un total de 17 puntos, con sus valores $x$ e $y$. Después de investigar el posicionamiento de estos puntos se puede decir, como se ve en la figura~\ref{fig:puntos}, que los puntos representan (teniendo en cuenta que se han detectado todos los puntos y que la persona está mirando de frente al objetivo) las partes que se pueden observar en la tabla~\ref{tab:partes}.
 \end{itemize}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{lr}
+		\toprule
+		\textbf{Id} & \textbf{Parte}\\
+		\midrule
+		0&Nariz\\
+		1 y 2&Ojos (izq.y der.)\\
+		3 y 4&Orejas (izq.y der.)\\
+		5 y 6&Hombros (izq.y der.)\\
+		7 y 8&Codos (izq.y der.)\\
+		9 y 10&Muñecas-manos (izq.y der.)\\
+		11 y 12&Cadera (izq.y der.)\\
+		13 y 14&Rodillas (izq.y der.)\\
+		15 y 16&Tobillos (izq.y der.)\\
+	\bottomrule
+	\end{tabular}
+\caption{Tabla con las partes de la posición y su identificador.}
+\label{tab:partes}
+\end{table}
+
 
 \begin{figure}[h]
 	\centering
@@ -278,7 +289,7 @@ Si se analiza la salida tras predecir un imagen con el predictor creado (Default
 	\label{fig:puntos}
 \end{figure}
 \subsection{Clase de posición}
-Una vez se conoce la salida de las predicciones se puede usar esta para obtener más información de la posición de la persona, que en futuras etapas fue usada para la comparación de posiciones. Por ello se creó una clase que almacena todos los puntos detectados además de realizar cálculos para extraer más características.
+Una vez se conoce las salidas de las predicciones se pueden usar estas para obtener más información de la posición de la persona, que en futuras etapas fue usada para la comparación de posiciones. Por ello se creó una clase que almacena todos los puntos detectados además de realizar cálculos para extraer más características.
 
 Para poder obtener más información sobre los puntos se crearon una serie de funciones que permiten el cálculo de:
 \begin{itemize}
@@ -290,13 +301,13 @@ Para poder obtener más información sobre los puntos se crearon una serie de fu
 Como se comentó en apartados anteriores, una vez se tienen los puntos, se ha de realizar una serie de comprobaciones para saber si las posiciones son válidas:
 \begin{itemize}
 	\item Si existe más de una persona detectada se selecciona la primera, ya que es la que tiene un mayor \textit{score} y por lo tanto el modelo cree que puede ser con mayor probabilidad una persona.
-	\item Si una predicción no dispone de todos los puntos no se tiene en cuenta. En la práctica con las pruebas que se han realizado esto solo pasa cuando se pasa un objeto por ciertos puntos del cuerpo, cuando ocurre estos hay algunos fotogramas, muy pocos, que no detectan todos los puntos.
+	\item Si una predicción no dispone de todos los puntos no se tiene en cuenta. En la práctica con las pruebas que se han realizado esto solo sucede cuando se pasa un objeto por ciertos puntos del cuerpo, cuando ocurre estos hay algunos fotogramas, muy pocos, que no detectan todos los puntos.
 \end{itemize}
 
 \section{Primeras versiones comparación de posiciones} \label{PrimeraVersion}
 Una vez se había comprobado que el sistema de cálculo de posiciones era correcto se pasó a desarrollar la comparación de posiciones. Para esta primera versión de la comparación de posiciones se decidió usar los ángulos calculados a partir de los puntos y puntos medios de las posiciones. Se decidió usar los ángulos ya que es la única medida calculada que no depende de la posición del usuario grabado.
 \subsection{División de la comparación}
-La principal característica, a parte del uso de los ángulos, de la primera versión de la comparación de posiciones fue la división de la comparación en distintas partes para poder dar un peso mayor o menor a cada una de ellas. Esto se vio necesario observan los vídeos de ejemplos de los ejercicios que se proporcionaron, ya que había ejercicios donde se centraban en los brazos, otros en las piernas...
+La principal característica, a parte del uso de los ángulos, de la primera versión de la comparación de posiciones fue la división de la comparación en distintas partes para poder dar un peso mayor o menor a cada una de ellas. Esta división se creyó necesaria tras observar los vídeos de ejemplos de los ejercicios que se proporcionaron, ya que había ejercicios donde se centraban en los brazos, otros en las piernas\ldots
 
 La división que se planteó en esta versión es (Figura~\ref{fig:estiradosAbajo2}):
 \begin{itemize}
@@ -312,7 +323,7 @@ La división que se planteó en esta versión es (Figura~\ref{fig:estiradosAbajo
 	\label{fig:estiradosAbajo2}
 \end{figure}
 
-La comparación de cada una de las partes se realiza calculando la suma de los valores absolutos de las restas de los valores entre las dos posiciones.
+La comparación de cada una de las partes se realiza calculando la suma de los valores absolutos de las restas de los valores de los ángulos entre las dos posiciones.
 
 \subsection{Problema con los ángulos de los brazos}
 Tras haber implementado la primera versión se realizaron unas pruebas para comprobar su funcionamiento. En esta pruebas se encontró un fallo muy importante, ya que los ángulos que se obtenían eran hasta 180 grados, si se superaba este valor el ángulo se calculaba sobre el otro lado del punto central, es decir, nunca es superior a 180 grados. Es por ello que  posiciones como las que se pueden ver en las figuras~\ref{fig:brazosAbajo} y~\ref{fig:brazosArriba} tiene ángulos en ambos codos muy parecidos, aunque su posición sean casi contrarias.
@@ -331,7 +342,7 @@ Tras haber implementado la primera versión se realizaron unas pruebas para comp
 	\label{fig:brazosArriba}
 \end{figure}
 
-Además, se descubrió que este error con los brazos se daba a demás de en los codos en los ángulos de los hombros, ya que posiciones como las que se pueden ver en las figuras~\ref{fig:estiradosAbajo} y~\ref{fig:estiradosArriba} obtienen ángulos muy parecidos, por la misma razón que pasaba con los codos.
+Además, se descubrió que este error con los brazos se daba además de en los codos en los ángulos de los hombros, ya que posiciones como las que se pueden ver en las figuras~\ref{fig:estiradosAbajo} y~\ref{fig:estiradosArriba} obtienen ángulos muy parecidos, por la misma razón que pasaba con los codos.
 
 \begin{figure}[h]
 	\centering
@@ -347,11 +358,11 @@ Además, se descubrió que este error con los brazos se daba a demás de en los 
 	\label{fig:estiradosArriba}
 \end{figure}
 
-Para poder solucionar estos problemas lo primero que se hizo fue pasar los ángulos de los hombros que se encontraban en la comparación del torso a la comparación de los brazos. Después, para ambas partes se implemento el siguiente algoritmo para poder penalizar estos casos especiales:
+Para poder solucionar estos problemas lo primero que se hizo fue pasar los ángulos de los hombros que se encontraban en la comparación del torso a la comparación de los brazos. Después, para ambas partes se implementó el siguiente algoritmo para poder penalizar estos casos especiales:
 \begin{enumerate}
-	\item Comparar el ángulo (codo y hombro), si este está en un rango de 180 más menos un parámetro se dice que el codo u hombro está estirado y se le da el tipo 0.
+	\item Comparar el ángulo (codo y hombro), si este está en un rango de 180 a 180 menos un parámetro se dice que el codo u hombro está estirado y se le da el tipo 0.
 	\item Si no está en tipo 0 se comprueba la altura del siguiente punto, en el caso del codo el siguiente punto es la muñeca, y en el caso del hombro el punto del codo. Se comprueba entonces si este segundo punto está por encima, y entonces se le da el tipo 1, sino se le da el tipo 2.
-	\item Se comparan los tipos de las dos posiciones que se están comparando. Si cualquiera de las dos posiciones está estirada (tipo 0) entonces no se penaliza sea cual sea el tipo de la otra posición. Por el contrario, si ninguno de las dos posiciones tienen tipo 0, y sus tipos son distintos (uno tiene tipo 1 y le otro tipo 2) se penaliza sumando a la resta del absoluto de los ángulos un valor parametrizado, ya que se encuentran en posiciones muy distintas.
+	\item Se comparan los tipos de las dos posiciones que se están comparando. Si cualquiera de las dos posiciones está estirada (tipo 0) entonces no se penaliza sea cual sea el tipo de la otra posición. Por el contrario, si ninguna de las dos posiciones tienen tipo 0, y sus tipos son distintos (uno tiene tipo 1 y le otro tipo 2) se penaliza sumando a la resta del absoluto de los ángulos un valor parametrizado, ya que se encuentran en posiciones muy distintas.
 \end{enumerate}
 
 Una vez se implementó esta nueva comparación para los brazos se realizaron una serie de imágenes de prueba para poder confirmar el correcto funcionamiento de la nueva implementación.
@@ -361,7 +372,7 @@ Como se ha comentado, en esta segunda versión, que se centró en el problema co
 
 Al principio se puso un umbral de 10 grados, que para las imágenes de pruebas que se obtuvieron se recogieron buenos resultados, diferenciando correctamente cuando una de las partes estaba o no estirada. Lo mejor de que este valor sea un parámetro es que se puede modificar dependiendo del ejercicio a realizar.
 
-Por otro lado, al implementar la penalización se utilizó el mismo valor tanto para los codos como para los hombros, con una valor de 180 grados de penalización. Pero en comprobaciones que se realizaron después se observó que penalizar a los hombros con el mismo valor que a los codos no era correcto, ya que la diferencia no era tan grande. Es por ello que se dividió este parámetro de penalización en dos, uno para los codos a 180 y otro para los hombros a 90. Aun así, como pasa con el umbral, estos valores se puede modificar dependiendo del ejercicio a comparar.
+Por otro lado, al implementar la penalización se utilizó el mismo valor tanto para los codos como para los hombros, con una valor de 180 grados de penalización. Pero en comprobaciones que se realizaron después se observó que penalizar a los hombros con el mismo valor que a los codos no era correcto, ya que la diferencia no era tan grande. Es por ello que se dividió este parámetro de penalización en dos, uno para los codos a 180 y otro para los hombros a 90. Aun así, como pasa con el umbral, estos valores se pueden modificar dependiendo del ejercicio a comparar.
 
 \section{Versión 3 de comparación, uso de medias}
 Una vez se creía que la comparación de posiciones era correcta había que dar sentido a los valores obtenidos. La forma que se encontró más oportuna para poder realizar esta operación fue el uso de la media de los valores obtenidos en las distintas zonas con las que se trabaja (brazos, piernas y torso).

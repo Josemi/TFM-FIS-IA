@@ -3,10 +3,10 @@
 En este apartado se van a explicar los distintos conceptos teóricos necesarios para comprender correctamente el proyecto.
 
 \section{Vídeo}
-Tipo de datos compuesto por un conjunto de imágenes, y en algunos casos, una señal de audio sincronizada con las imágenes. Existen diversos formatos para vídeos que dependen de la codificación de los datos que utiliza, pero los más comunes son mp4, avi, . A parte de la compresión de la propia codificación, el tamaño de este tipo de datos depende principalmente de dos factores la cantidad de fotogramas por segundo y la calidad de los fotogramas.
-\subsection{Fotogramas por segundo - fps}
-Medida esencial en los vídeos que determina la cantidad de fotogramas que hay por segundo de vídeo. Esta medida está muy relacionada con la finalidad del vídeo, ya que no se necesitan los mismos fotogramas por segundo para una película, que suele ser 24 fps~\cite{fpscine}, que para ver un documental de deporte. Cabe destacar, que a la hora de visualizar un vídeo es importante la tasa de refresco del monitor, para que se pueda apreciar correctamente la cantidad de fotogramas por segundo del vídeo se necesita una tasa de refresco igual o superior. Esto quiere decir que si un vídeo está a 60 fps lo recomendable para ver correctamente el vídeo es que el monitor tenga al menos 60Hz de tasa de refresco.
-\subsection{Calidad}
+El vñideo es un tipo de datos compuesto por un conjunto de imágenes, y en algunos casos, una señal de audio sincronizada con las imágenes. Existen diversos formatos para vídeos que dependen de la codificación de los datos que utiliza, pero los más comunes son \textit{mp4}, \textit{avi}, \textit{webm}\ldots A parte de la compresión de la propia codificación, el tamaño de este tipo de datos depende principalmente de dos factores la cantidad de fotogramas por segundo y la resolución de los fotogramas.
+\subsection{Fotogramas por segundo - FPS}
+Los fotogramas por segundo son una medida esencial en los vídeos que determina la cantidad de fotogramas que hay por segundo de vídeo. Esta medida está muy relacionada con la finalidad del vídeo, ya que no se necesitan los mismos fotogramas por segundo para una película, que suele ser 24 fps~\cite{fpscine}, que para ver un documental de deporte. Cabe destacar, que a la hora de visualizar un vídeo es importante la tasa de refresco del monitor, para que se pueda apreciar correctamente la cantidad de fotogramas por segundo del vídeo se necesita una tasa de refresco igual o superior. Esto quiere decir que si un vídeo está a 60 fps lo recomendable para ver correctamente el vídeo es que el monitor tenga al menos 60Hz de tasa de refresco.
+\subsection{Calidad o resolución}
 La calidad de las imágenes del vídeo es otro de los parámetros más importantes, ya que dependiendo de este valor el vídeo pesará más o menos o se verá mejor o peor. Actualmente la proporción más normal de pantalla es 16:9, las calidades más comunes para esta proporción son:
 \begin{itemize}
 	\item 480p -> 854 x 480.
@@ -15,7 +15,7 @@ La calidad de las imágenes del vídeo es otro de los parámetros más important
 	\item 1440p QHD -> 2560 x 1440.
 \end{itemize}
 \section{Visión por computador}
-La visión por computador, también llamada visión artificial, es la parte de la ciencia de la computación orientada a la recogida y al tratamiento de imágenes y vídeos~\cite{wiki:visionartifical,cnn}.
+La visión por computador, también llamada visión artificial, es la parte de la ciencia de la computación orientada a la recogida y al tratamiento de imágenes y vídeos~\cite{wiki:visionartifical,cnn} para la obtención de información inherente a estos tipos de datos.
 
 Por la tipología de los datos con los que se trabaja en la visión por computador el procesamiento de éstos es muy costoso. Este elevado coste computacional es causado en gran parte por la calidad de las imágenes y en el caso de los vídeos, además de la calidad de la imagen, por la cantidad de fotogramas por segundo con el que se ha grabado éste.
 
@@ -30,17 +30,17 @@ Es otra de las funciones más usadas de la visión por computador, en ella se bu
 \end{itemize}
 
 \section{Redes neuronales}
-Modelos basados en la analogía con la corteza cerebral de los mamíferos, aunque no están cerca, al menos de momento, de ser tan complejos como el cerebro biológico. El funcionamiento de estos modelos es relativamente sencillo, ya que <<solo>> son un conjunto de unidades básicas, que reciben una entrada y dan una salida. Donde realmente reside su complejidad, al igual que en el cerebro humano, es en las conexiones de estas unidades básicas para formar un modelo complejo capaz de realizar multitud de tareas~\cite{cnn}.
+Son modelos basados en la analogía con la corteza cerebral de los mamíferos, aunque no están cerca, al menos de momento, de ser tan complejos como el cerebro biológico. El funcionamiento de estos modelos es relativamente sencillo, ya que <<solo>> son un conjunto de unidades básicas (también llamadas neuronas), que reciben una entrada y dan una salida. Donde realmente reside su complejidad, al igual que en el cerebro humano, es en las conexiones de estas unidades básicas para formar un modelo complejo capaz de realizar multitud de tareas~\cite{cnn}.
 
 Estas unidades interactúan con los datos que les llegan con una función de activación que puede excitar a esta unidad o neurona y así pasar la información modificada a sus conexiones. Además, las distintas conexiones entre las unidades tienen un peso definido, que expresa la fuerza del enlace. Este peso se modifica a lo largo del entrenamiento de la red para poder obtener mejores resultados.
 
 Según como se propague la información por la red, estas pueden dividirse en dos tipos:
 \begin{itemize}
-	\item \textbf{\textit{Feed-forward networks}:} redes neuronales donde la información solo avanza por ésta hacia delante, no existe ningún tipo de bucle entre las conexiones de las unidades que haga pasar dos o más veces por una de éstas. En este tipo de redes neuronales se encuentran el perceptrón multicapa y las redes neuronales convolucionales
+	\item \textbf{\textit{Feed-forward networks}:} redes neuronales donde la información solo avanza por ésta hacia delante, no existe ningún tipo de bucle entre las conexiones de las unidades que haga pasar la información dos o más veces por una de éstas. En este tipo de redes neuronales se encuentran el perceptrón multicapa y las redes neuronales convolucionales
 	\item \textbf{\textit{Feed-back networks}:} redes neuronales que sí admiten bucles entre sus conexiones, lo que les permite tener capacidad de memorización. Algún ejemplos de este tipo de redes son las redes neuronales recurrentes o las \textit{Long-Short Term Memory}~\cite{lstm}.
 \end{itemize}
 \subsection{Redes neuronales convolucionales}
-Son de los tipos de redes neuronales más usados en la actualidad, sobre todo cuando se trabaja con datos de alta dimensionalidad, principalmente imágenes y vídeos. Las redes neuronales convolucionales tienen dos partes (figura~\ref{fig:cnn}):
+Las redes neuronales convolucionales o CNNs, de sus siglas en ingles Convolutional Neural Network, son de los tipos de redesmás usados en la actualidad, sobre todo cuando se trabaja con datos de alta dimensionalidad, principalmente imágenes y vídeos. Las redes neuronales convolucionales tienen dos partes (figura~\ref{fig:cnn}):
 \begin{enumerate}
 	\item Fase de extracción de características.
 	\item Fase de clasificación, puede realizarse con un perceptrón multicapa por ejemplo.
@@ -56,13 +56,16 @@ Son de los tipos de redes neuronales más usados en la actualidad, sobre todo cu
 Cada fase está relacionada con un paradigma de aprendizaje distinto, ya que en la extracción de características a partir de filtros se realiza de forma no supervisada, mientras que en la fase de clasificación se realiza un aprendizaje supervisado a partir de los datos obtenidos en la fase de extracción de características.
 
 
-Aun así, el primer paso que siempre se ha de realiza antes de entrar en las distintas capas es realizar un preprocesado de la imagen. Éste puede ser por:
+Aun así, el primer paso que siempre se ha de llevar a cabo antes de entrar en las distintas capas es realizar un preprocesado de la imagen. Éste puede ser por:
 \begin{itemize}
 	\item Extracción de la media, para a partir de ésta poder centrar los datos. Para cada dato de entrenamiento $x$ de un conjunto $N$ tal que $x \epsilon \mathbb{R}^{h*w*c}$, donde $h$ es el alto de la imagen, $w$ es el ancho y $c$ es color (normalmente 3 dimensiones, RGB), se puede definir la extracción de la media con la siguiente fórmula:
 	\begin{equation}
 	x'=x-\widehat{x}, \widehat{x}=1/N\sum_{i=1}^{N}x_i
 	\end{equation}
-	\item Normalización.
+	\item Normalización. Con la fórmula:
+	\begin{equation}
+	x''=\frac{x'}{\sqrt{\frac{\sum_{i=1}^{N}(x_i-\widehat{x})^2}{N-1}}}
+	\end{equation}
 	\item Blanqueo con PCA para reducir las correlaciones entre las diferentes dimensiones de los datos a partir de un normalización independiente para cada una de ellas.
 	\item \textit{Local Contrast Normalization}, tipo de normalización que permite resaltar los valores más elevados.
 \end{itemize}
@@ -83,12 +86,12 @@ Al aplicar el filtro hay que tener en cuenta el \textit{stride}, que es el movim
 	\label{fig:filtro}
 \end{figure}
 
-Para calcular el tamaño de los datos una vez pasado un filtro se puede usar la siguente fórmula, donde $h$ es \textit{height} (alto), $w$ es \textit{width} (ancho), $s$ es el \textit{stride} y $f$ es el tamaño del filtro:
+Para calcular el tamaño de los datos una vez pasado un filtro se puede usar la siguiente fórmula, donde $h$ es \textit{height} (alto), $w$ es \textit{width} (ancho), $s$ es el \textit{stride} y $f$ es el tamaño del filtro:
 \begin{equation}
 h'=\left \lfloor \frac{h-f+s}{s} \right \rfloor; w'= \left \lfloor \frac{w-f+s}{s} \right \rfloor
 \end{equation}
 
-Siendo esta la función de parte entera o \textit{floor operation}. Si se aplica esta fórmula a los datos de la imagen~\ref{fig:filtro}:
+Siendo $\left \lfloor  \right \rfloor$ la función de parte entera o \textit{floor operation}. Si se aplica esta fórmula a los datos de la imagen~\ref{fig:filtro}:
 
 \begin{equation}
 h'=\left \lfloor \frac{4-2+1}{1} \right \rfloor = 3; w'= \left \lfloor \frac{4-2+1}{1} \right \rfloor=3
@@ -120,9 +123,9 @@ Pero, como se ha visto, los filtros no suelen tener el mismo tamaño ni el mismo
 RF_{eff}^n = RF_{eff}^{n-1} + ((f_n -1)* \prod_{i=1}^{n-1}s_i)
 \end{equation}
 
-Donde $f_n$ es el tamaño del filtro de la capa n, $s_i$ es el valor de \textit{stride} para la capa i, y $RF_{eff}^{n-1}$ representa el \textit{effective receptive field} de la capa anterior.
+Donde $f_n$ es el tamaño del filtro de la capa $n$, $s_i$ es el valor de \textit{stride} para la capa i, y $RF_{eff}^{n-1}$ representa el \textit{effective receptive field} de la capa anterior.
 
-Como ya se ha comentado, uno de los principales problemas de las capas convolucionales son los valores de los bordes, ya que al aparecer menos en las operaciones de los bordes se ven menos representados en las salidas de las capas. Es por ello que se propuso una modificación de las capas convolucionales llamada \textit{Dilated Convolution}, la cual tiene una dilatación (d) siendo esta la distancia entre los valores del filtro a tener en cuenta. Como se puede ver en la figura~\ref{fig:dilated}, donde se obtiene un filtro de tamaño 3 y con una dilatación de 2, los valores de los bordes tienen un mayor peso en la salida de la capa.
+Como ya se ha comentado, uno de los principales problemas de las capas convolucionales son los valores de los bordes, ya que al aparecer menos en las operaciones de los bordes se ven menos representados en las salidas de las capas. Es por ello que se propuso una modificación de las capas convolucionales llamada \textit{Dilated Convolution}, la cual tiene una dilatación ($d$) siendo esta la distancia entre los valores del filtro a tener en cuenta. Como se puede ver en la figura~\ref{fig:dilated}, donde se obtiene un filtro de tamaño 3 y con una dilatación de 2, los valores de los bordes tienen un mayor peso en la salida de la capa.
 
 \begin{figure}[h]
 	\centering
@@ -162,7 +165,7 @@ Tipo de capa en la cual todas sus unidades están conectadas con todas las unida
 
 \textbf{Capas de no linealidad}
 
-Capas en las cuales la función de activación de cada unidad toma como valor de entrada un número y da como salida un valor en un rango corto, como puede ser [0,1] o [-1,1]. Este tipo de capas suele ir después de las capas <<pesadas>> como las capas convolucionales o de las capas totalmente conectadas, estas capas son muy importantes utilizarlas después de las capas <<pesadas>> porque permite mapear espacios no lineales. Algunas de las funciones de activación de esta capa más comunes se pueden ver en la figura~\ref{fig:funac}.
+Capas en las cuales la función de activación de cada unidad toma como valor de entrada un número y da como salida un valor en un rango corto, como puede ser [0,1] o [-1,1]. Este tipo de capas suele ir después de las capas <<pesadas>> como las capas convolucionales o de las capas totalmente conectadas. Este tipo de capa es muy importantes utilizarlas después de las capas <<pesadas>> debido a que permite mapear espacios no lineales. Algunas de las funciones de activación de esta capa más comunes se pueden ver en la figura~\ref{fig:funac}.
 
 \begin{figure}[h]
 	\centering
@@ -170,8 +173,8 @@ Capas en las cuales la función de activación de cada unidad toma como valor de
 	\caption{Funciones de activación más comunes en capas de no linealidad~\cite{cnn}.}
 	\label{fig:funac}
 \end{figure}
-\subsubsection{ResNet}
-ResNet o \textit{Residual Netowrk} es un tipo de arquitectura de redes neuronales convolucionales creada por Microsoft~\cite{resnet}. Este tipo de CNN se caracterizan por saltarse las conexiones de identidad en los bloques residuales, para así obtener un modelo mucho más sencillo de entrenar. En un bloque residual, los datos de entrada se duplican, pasando unos por las transformaciones y otros por las conexiones de identidad, estas conexiones, como se puede ver en la figura~\ref{fig:resnet}, sirven para saltarse las capas de transformación, pasando los datos iniciales tal cual llegan.
+\subsection{ResNet}
+ResNet o \textit{Residual Network} es un tipo de arquitectura de redes neuronales convolucionales creada por Microsoft~\cite{resnet}. Este tipo de CNN se caracterizan por saltarse las conexiones de identidad en los bloques residuales, para así obtener un modelo mucho más sencillo de entrenar. En un bloque residual, los datos de entrada se duplican, pasando unos por las transformaciones y otros por las conexiones de identidad, estas conexiones, como se puede ver en la figura~\ref{fig:resnet}, sirven para saltarse las capas de transformación, pasando los datos iniciales tal cual llegan.
 
 \begin{figure}[h]
 	\centering
@@ -179,7 +182,7 @@ ResNet o \textit{Residual Netowrk} es un tipo de arquitectura de redes neuronale
 	\caption{Ejemplo bloque residual en ResNet~\cite{cnn}.}
 	\label{fig:resnet}
 \end{figure}
-\subsubsection{Region-Based CNN}
+\subsection{Region-Based CNN}
 Las \textit{Region-Based Convolutional Neural Nwtworks} o RCNN son un tipo de redes neuronales convolucionales orientadas al reconocimiento de objetos en imágenes. Este tipo de redes convolucionales, como se puede observar en la figura~\ref{fig:rcnn} tiene 3 módulos~\cite{cnn}:
 \begin{itemize}
 	\item Módulo de extracción de propuestas a región.
