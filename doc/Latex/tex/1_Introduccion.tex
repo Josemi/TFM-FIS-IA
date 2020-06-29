@@ -1,3 +1,56 @@
-\capitulo{1}{Introducción}
+\capitulo{1}{Introducción} \label{intro}
 
-Descripción del contenido del trabajo y del estrucutra de la memoria y del resto de materiales entregados.
+La enfermedad del \textit{\textbf{Parkinson}} es trastorno neurodegenerativo (enfermedades que afectan al cerebro humano, con carácter \textbf{crónico}, es decir no se puede curar, y \textbf{progresivo}, es decir, que la enfermedad evoluciona~\cite{jpndresearch2017,cron}) que afecta al \textbf{sistema nervioso} de la persona. Pertenece al grupo de enfermedades llamadas \textbf{Trastornos del Movimiento}, como la enfermedad de \textit{Huntington} o el síndrome de las piernas inquietas~\cite{trasmov,p1,p2,p3}.
+
+La enfermedad del \textit{Parkinson} tiene diversos síntomas con los cuales se puede detectar, entre estos están los \textbf{temblores}, que es el síntoma más característico de la enfermedad, pérdida de los movimientos automáticos, rigidez muscular y lentitud en los movimientos, problemas de equilibrio y/o coordinación$\ldots$
+
+Las principales causas de la enfermedad de \textit{Parkinson}, que recibe su nombre por el doctor que la descubrió \textit{James Parkinson} en 1817, son:
+\begin{itemize}
+	\item \textbf{Factor genético}. Se estima que entre un 15\% y 25\% de las personas que sufren la enfermedad tienen algún pariente que ha sufrido o está sufriendo la enfermedad.
+	\item \textbf{Factores ambientales}. Estar expuesto a alguna toxina como puede ser un pesticida.
+\end{itemize}
+
+Además, existen una serie de factores que aumentan la probabilidad de tener la enfermedad, estos son:
+\begin{itemize}
+	\item \textbf{Edad}. Las personas mayores de 60 años tienen una probabilidad de sufrir la enfermedad.
+	\item \textbf{Sexo}. Los hombres son más propensos a sufrir la enfermedad.
+\end{itemize}
+
+Los pacientes pueden ser clasificados en 5 tipos distintos llamados \textbf{estadíos}. En el estadío 1 el paciente solo sufre una afectación en un lateral de su cuerpo, mientras que en el último estadío el paciente tiene una gran afectación en todo el cuerpo además de no poder ser una persona autosuficiente.
+
+El \textit{Parkinson} es la segunda enfermedad neurodegenerativa más \textbf{común} en el mundo, después del \textit{Alzhéimer}. En total hay \textbf{6,5 millones} de personas afectas por \textit{Parkinson} en el mundo, de las cuales entre 160 mill y 300 mil están en España~\cite{curemoselparkinson2020}.
+
+Para poder tratar a los pacientes de esta enfermedad existen cuatro tipos de \textbf{tratamientos} que pueden ser complementarios, estás son farmacológicos, quirúrgico, terapias avanzadas y no farmacológicos. Es en este último donde se encuentra uno de los tratamientos más sencillos y que mayor beneficio aporta a los pacientes, las \textbf{rehabilitaciones}.
+
+Estas \textbf{rehabilitaciones} se realizan mayoritariamente en las consultas médicas, teniendo que desplazarse el paciente (que habitualmente es una persona muy mayor con grandes dificultades para moverse, sobre todo en los estadíos más avanzados) hasta allí. Además, con la creciente \textbf{despoblación} de las \textbf{zonas rurales} los centros de salud de los municipios más pequeños se están cerrando por falta de recursos y pacientes a los que atender. Cabe destacar también la influencia de pandemias como la que se está viviendo actualmente con el \textit{COVID-19}, que al no poder dirigirse los pacientes a los centros de salud por la saturación del sistema sanitario y al ser personas de riesgo, las rehabilitaciones de los pacientes se posponen de forma indefinida.
+
+Es por ello que el avance en las \textbf{tecnologías} de telecomunicación han permitido el desarrollo de \textbf{rehabilitaciones \textit{online}}, en las cuales el paciente no ha de movilizarse a ningún sitio, sino que puede realizar sus rehabilitaciones correspondientes desde su casa. Además, los constantes avances que se están dando en área de la informática como el \textbf{\textit{Big Data}} y la \textbf{visión por computador} están permitiendo desarrollar los primeros prototipos de rehabilitaciones \textit{online} sin necesidad de la presencia de un terapeuta o un médico.
+
+Es de aquí donde nació el proyecto <<Estudio de factibilidad y coste-efectividad del uso telemedicina con un equipo multidisciplinar para enfermedad de Parkinson>>, un proyecto de colaboración entre el Hospital Universitario de Burgos y la Universidad de Burgos, para desarrollar un sistema informático que permite realizar rehabilitaciones \textit{online} entre paciente y terapeuta, y que además permita la realización de ejercicios de forma autónoma por parte del paciente mostrándole su valoración y evolución de sus ejercicios. Todo ello bajo una interfaz y una interacción con los dispositivos \textbf{sencilla} para los pacientes.
+
+El desarrollo de la aplicación web para el soporte del sistema fue desarrollado en conjunto con José Luis Garrido Labrador, como se comenta en el apartado~\ref{desarrolloFH}. El resto del desarrollo se dividió en:
+\begin{itemize}
+	\item Desarrollo de un \textbf{flujo extensible} capaz de recoger la imagen gravada en el dispositivo del paciente y una vez en el servidor aplicar métodos para la mejora y la anonimización de la imagen. Este punto ha sido desarrollado por el compañero José Luis Garrido Labrador.
+	\item Investigación de una herramienta capaz de \textbf{estimar la postura} del paciente e implementar un sistema de \textbf{interpretación y comparación} de posiciones capaz de valorar la similitud entre ejercicios. Todo ello debía de poder ser ejecutado en el flujo del compañero de forma que se tardará el menos tiempo posible en la ejecución de todas las partes y con el menor uso de memoria posible.
+\end{itemize}
+
+Es sobre este último punto el que se desarrolla en este documento, la implementación de un sistema de \textbf{estimación} y \textbf{comparación} de posiciones que trabaje con una \textbf{gran cantidad de datos}, \textbf{muy pesados} y que pueda ejecutarse en un \textbf{flujo}.
+
+\section{Estructura de la memoria}
+La presente memoria se compone de los siguiente apartados:
+\begin{enumerate}
+	\item \textbf{Introducción}: descripción de la enfermedad de \textit{Parkinson}, introducción al proyecto y al trabajo desarrollado.
+	\item \textbf{Objetivos del proyecto}: objetivos funcionales, técnicos y personales que se fijaron al comienzo del proyecto.
+	\item \textbf{Conceptos teóricos}: definiciones y explicaciones de las distintas nociones teóricas necesarias para la correcta comprensión del trabajo realizado.
+	\item \textbf{Técnicas y herramientas}: conjunto de herramientas utilizadas en el desarrollo del proyecto.
+	\item \textbf{Aspectos relevantes del desarrollo}: documentación de los sucesos más importantes en el desarrollo del proyecto.
+	\item \textbf{Trabajos relacionados}: conjunto de proyectos similares en los que se fijó en las distintas partes del desarrollo.
+	\item \textbf{Conclusiones y Líneas de trabajo futuras}: conclusiones finales del proyecto y las posibles mejoras que se podrían haber realizado si se tuviese más tiempo o más recursos económicos.
+\end{enumerate}
+
+\section{Estructura de los apéndices}
+Los apéndices del documento se organizan de la siguiente manera:
+\begin{enumerate}
+	\item TODO.
+\end{enumerate}
+

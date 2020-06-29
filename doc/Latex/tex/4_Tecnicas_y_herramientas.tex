@@ -3,22 +3,24 @@
 En este apartado se van a comentar las distintas técnicas y herramientas utilizadas en el desarrollo del proyecto.
 
 \section{Visión por computador $\sim$ Detección de movimiento}
-Existen distintos algoritmos de detección de movimiento, cada uno diferenciado por el uso de distintos lenguajes de programación y diferentes métodos de inteligencia artificial con los que entrenar el modelo. Como en este proyecto se ha querido trabajar en \textit{Python} se han investigado los siguientes algoritmos que están implementados en este lenguaje de programación. 
+Existen distintos algoritmos de detección de movimiento, cada uno diferenciado por el uso de distintos lenguajes de programación y diferentes métodos de inteligencia artificial con los que entrenar el modelo. Como en este proyecto se ha querido trabajar en \textit{Python}, se han investigado los siguientes algoritmos que están implementados en este lenguaje de programación. 
 
 \subsection{Detectron}\label{dectectron}
 \textit{Detectron} es un proyecto de inteligencia artificial de \textit{Facebook} centrado en la detección de objetos y personas con el uso de algoritmos de \textit{deep learning} a partir de redes neuronales convolucionales~\cite{Detectron2018}. Este proyecto se apoya en \textit{PyTorch}, una de las librerías de inteligencia artificial más usadas en \textit{Python}.
 
 El proyecto cuenta ya con una segunda versión llamada \textit{Detectron2}, en la cual se han mejorado y añadido más modelos~\cite{wu2019detectron2}. La mayoría de modelos de \textit{Detectron2} usan redes neuronales convolucionales.
 
+Como se explicará en el apartado~\ref{aspc}, esta herramienta fue la elegida para la obtención de la posición o postura del paciente.
+
 
 \subsection{PoseNet}
-PoseNet es un proyecto de \textit{Google} orientado unicamente al seguimiento del movimiento de las personas centrando su análisis en los puntos claves del cuerpo humano. El proyecto se basa en la librería de inteligencia artificial de la propia compañía \textit{Google} llamada \textit{TensorFlow}.
+PoseNet es un proyecto de \textit{Google} orientado unicamente al seguimiento del movimiento de las personas centrando su análisis en los puntos claves del cuerpo humano. El proyecto se basa en la librería de inteligencia artificial de la propia compañía \textit{Google} llamada \textit{TensorFlow}~\cite{tensorflow2015-whitepaper}.
 
 
 \section{Estación de trabajo}
-Como ya se ha comentado, el trabajo con vídeos y la visión por computador necesita gran cantidad de capacidad de cálculo. Es por ello que la realización del proyecto en un ordenador personal es casi imposible, o al menos ralentizaría mucho el avance de éste. Es por esta razón que se ha decidido utilizar para el desarrollo del proyecto, sobre todo para la parte de ejecución de los algoritmos, una estación de trabajo de la Universidad de Burgos. Esta estación de trabajo, que se llama Gamma, se encuentra en uno de los despachos del departamento de Ingeniería Informática en la Escuela Politécnica Superior. Las especificaciones de esta estación de trabajo son:
+El trabajo con vídeos y la visión por computador necesita gran cantidad de capacidad de cálculo. Es por ello que la realización del proyecto en un ordenador personal es casi imposible, o al menos ralentizaría mucho el avance de éste. Es por esta razón que se ha decidido utilizar para el desarrollo del proyecto, sobre todo para la parte de ejecución de los algoritmos, una estación de trabajo de la Universidad de Burgos. Esta estación de trabajo, que se llama Gamma, se encuentra en uno de los despachos del departamento de Ingeniería Informática en la Escuela Politécnica Superior. Las especificaciones de esta estación de trabajo son:
 \begin{itemize}
-	\item 3 Nvidia Titan XP.
+	\item 3 Nvidia Titan XP, con 12 GB de memoria cada una.
 	\item Intel Xeon, con 16 núcleos.
 	\item 128GB de RAM.
 \end{itemize}

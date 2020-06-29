@@ -3,34 +3,53 @@
 En este apartado se van a explicar los distintos conceptos teóricos necesarios para comprender correctamente el proyecto.
 
 \section{Vídeo}
-El vñideo es un tipo de datos compuesto por un conjunto de imágenes, y en algunos casos, una señal de audio sincronizada con las imágenes. Existen diversos formatos para vídeos que dependen de la codificación de los datos que utiliza, pero los más comunes son \textit{mp4}, \textit{avi}, \textit{webm}\ldots A parte de la compresión de la propia codificación, el tamaño de este tipo de datos depende principalmente de dos factores la cantidad de fotogramas por segundo y la resolución de los fotogramas.
-\subsection{Fotogramas por segundo - FPS}
+El vídeo es un tipo de datos compuesto por un conjunto de imágenes, y en algunos casos, una señal de audio sincronizada con las imágenes. Existen diversos formatos para vídeos que dependen de la codificación de los datos que utiliza, pero los más comunes son \textit{mp4}, \textit{avi}, \textit{webm}\ldots A parte de la compresión de la propia codificación, el tamaño de este tipo de datos depende principalmente de dos factores: la cantidad de fotogramas por segundo y la resolución de los fotogramas.
+\subsection{Fotogramas por segundo -- FPS}
 Los fotogramas por segundo son una medida esencial en los vídeos que determina la cantidad de fotogramas que hay por segundo de vídeo. Esta medida está muy relacionada con la finalidad del vídeo, ya que no se necesitan los mismos fotogramas por segundo para una película, que suele ser 24 fps~\cite{fpscine}, que para ver un documental de deporte. Cabe destacar, que a la hora de visualizar un vídeo es importante la tasa de refresco del monitor, para que se pueda apreciar correctamente la cantidad de fotogramas por segundo del vídeo se necesita una tasa de refresco igual o superior. Esto quiere decir que si un vídeo está a 60 fps lo recomendable para ver correctamente el vídeo es que el monitor tenga al menos 60Hz de tasa de refresco.
 \subsection{Calidad o resolución}
 La calidad de las imágenes del vídeo es otro de los parámetros más importantes, ya que dependiendo de este valor el vídeo pesará más o menos o se verá mejor o peor. Actualmente la proporción más normal de pantalla es 16:9, las calidades más comunes para esta proporción son:
 \begin{itemize}
-	\item 480p -> 854 x 480.
-	\item 720p HD -> 1280 x 720.
-	\item 1080 p Full HD -> 1920 x 1080 .
-	\item 1440p QHD -> 2560 x 1440.
+	\item 480p $\rightarrow$ 854 x 480.
+	\item 720p HD $\rightarrow$ 1280 x 720.
+	\item 1080 p Full HD $\rightarrow$ 1920 x 1080 .
+	\item 1440p QHD $\rightarrow$ 2560 x 1440.
 \end{itemize}
 \section{Visión por computador}
 La visión por computador, también llamada visión artificial, es la parte de la ciencia de la computación orientada a la recogida y al tratamiento de imágenes y vídeos~\cite{wiki:visionartifical,cnn} para la obtención de información inherente a estos tipos de datos.
 
-Por la tipología de los datos con los que se trabaja en la visión por computador el procesamiento de éstos es muy costoso. Este elevado coste computacional es causado en gran parte por la calidad de las imágenes y en el caso de los vídeos, además de la calidad de la imagen, por la cantidad de fotogramas por segundo con el que se ha grabado éste.
+Por la tipología de los datos con los que se trabaja en la visión por computador, el procesamiento de éstos es muy costoso. El elevado coste computacional es causado en gran parte por la calidad de las imágenes y en el caso de los vídeos, además de la calidad de la imagen, por la cantidad de fotogramas por segundo con el que ha sido grabado.
 
-\subsection{Estimación de la posición}
-Una de las principales funciones que tiene la visión artificial es la detección de movimiento, la cual consiste en primero detectar la posición de cada una de las partes del cuerpo (depende del propio algoritmo la división que se quiera realizar sobre el cuerpo) para posteriormente realizar un seguimiento de estos elementos.
+\subsection{Estimación de la posición o postura}
+Una de las principales funciones que tiene la visión artificial es la detección de movimiento, la cual consiste en primero detectar la posición de cada una de las partes del cuerpo (depende del propio algoritmo la división que se quiera realizar sobre el cuerpo) para posteriormente realizar un seguimiento de estos elementos. Un ejemplo de este tipo de funcionalidad se puede ver en la figura~\ref{fig:keypoint}.
 
 \subsection{Segmentación}
-Es otra de las funciones más usadas de la visión por computador, en ella se busca analizar la imagen para poder detectar y delimitar el espacio los distintos objetos, personas o animales que hay en la imagen. Este espacio delimitado se obtiene de dos formas principalmente:
+Es otra de las funciones más usadas de la visión por computador, en ella se busca analizar la imagen para poder detectar y delimitar el espacio los distintos objetos, personas o animales que hay en la imagen, como se puede ver en el ejemplo de la figura~\ref{fig:segmentation}. Este espacio delimitado se obtiene de dos formas principalmente:
 \begin{itemize}
 	\item Figura exacta, se delimita la silueta del objeto, persona o animal detectado con un conjunto de puntos que representan la silueta de éste.
 	\item Forma geométrica, es el tipo más usado debido a que requiere menor capacidad de cómputo. La forma más utilizada es el rectángulo, pero se podrían usar otro tipo de formas para delimitar y segmentar el objeto, persona o animal detectado.
 \end{itemize}
 
+\begin{figure}[ht]
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		% include first image
+		\includegraphics[width=.8\linewidth,height=4cm]{keypoint}  
+		\caption{Ejemplo estimación de la postura.}
+		\label{fig:keypoint}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		% include second image
+		\includegraphics[height=4cm]{segmentacion}  
+		\caption{Ejemplo segmentación.}
+		\label{fig:segmentation}
+	\end{subfigure}
+	\caption{Ejemplos tipos de utilidades de la visión por computador.}
+	\label{fig:vc}
+\end{figure}
+
 \section{Redes neuronales}
-Son modelos basados en la analogía con la corteza cerebral de los mamíferos, aunque no están cerca, al menos de momento, de ser tan complejos como el cerebro biológico. El funcionamiento de estos modelos es relativamente sencillo, ya que <<solo>> son un conjunto de unidades básicas (también llamadas neuronas), que reciben una entrada y dan una salida. Donde realmente reside su complejidad, al igual que en el cerebro humano, es en las conexiones de estas unidades básicas para formar un modelo complejo capaz de realizar multitud de tareas~\cite{cnn}.
+Son modelos basados en la analogía con la corteza cerebral de los mamíferos, aunque no están cerca, al menos de momento, de ser tan complejos como el cerebro biológico. El funcionamiento de estos modelos es relativamente sencillo, ya que <<solo>> son un conjunto de unidades básicas (también llamadas neuronas), que reciben una entrada y devuelven una salida. Donde realmente reside su complejidad, al igual que en el cerebro humano, es en las conexiones de estas unidades básicas para formar un modelo complejo capaz de realizar multitud de tareas~\cite{cnn}.
 
 Estas unidades interactúan con los datos que les llegan con una función de activación que puede excitar a esta unidad o neurona y así pasar la información modificada a sus conexiones. Además, las distintas conexiones entre las unidades tienen un peso definido, que expresa la fuerza del enlace. Este peso se modifica a lo largo del entrenamiento de la red para poder obtener mejores resultados.
 
@@ -40,7 +59,7 @@ Según como se propague la información por la red, estas pueden dividirse en do
 	\item \textbf{\textit{Feed-back networks}:} redes neuronales que sí admiten bucles entre sus conexiones, lo que les permite tener capacidad de memorización. Algún ejemplos de este tipo de redes son las redes neuronales recurrentes o las \textit{Long-Short Term Memory}~\cite{lstm}.
 \end{itemize}
 \subsection{Redes neuronales convolucionales}
-Las redes neuronales convolucionales o CNNs, de sus siglas en ingles Convolutional Neural Network, son de los tipos de redesmás usados en la actualidad, sobre todo cuando se trabaja con datos de alta dimensionalidad, principalmente imágenes y vídeos. Las redes neuronales convolucionales tienen dos partes (figura~\ref{fig:cnn}):
+Las redes neuronales convolucionales o CNNs~\cite{cnn}, de sus siglas en inglés Convolutional Neural Network, son de los tipos de redes más usados en la actualidad, sobre todo cuando se trabaja con datos de alta dimensionalidad, principalmente imágenes y vídeos. Las redes neuronales convolucionales tienen dos fases (figura~\ref{fig:cnn}):
 \begin{enumerate}
 	\item Fase de extracción de características.
 	\item Fase de clasificación, puede realizarse con un perceptrón multicapa por ejemplo.
@@ -99,7 +118,7 @@ h'=\left \lfloor \frac{4-2+1}{1} \right \rfloor = 3; w'= \left \lfloor \frac{4-2
 
 Con este tipo de capas existe un problema, ya que hay muchas situaciones que necesitan que se conserve el tamaño de los datos, como por ejemplo en una segmentación, pero si se utiliza este tipo de capas aunque se use el valor mínimo, \textit{stride} 1, se siguen perdiendo datos suavizando sobre todo los bordes. Es por ello que surgió el concepto \textit{zero-padding} que permite mantener el tamaño original de los datos.
 
-El \textit{zero-padding} consiste añadir a los datos de entrada bordes con valores 0 para así cuando se pase el filtro el tamaño de los datos se intente mantener constante. Con el uso del \textit{zero-padding} la fórmula se modifica usando $p$ como el número de aumentos con valores a 0 en cada dimensión~\cite{zeropadding}:
+El \textit{zero-padding} consiste añadir a los datos de entrada bordes con valores 0 para que cuando se pase el filtro el tamaño de los datos se intente mantener constante. Con el uso del \textit{zero-padding} la fórmula se modifica usando $p$ como el número de aumentos con valores a 0 en cada dimensión~\cite{zeropadding}:
 \begin{equation}
 h'=\left \lfloor \frac{h-f+s+p}{s} \right \rfloor; w'= \left \lfloor \frac{w-f+s+p}{s} \right \rfloor
 \end{equation}
@@ -144,7 +163,7 @@ h'=\frac{h-f-(d-1)*(f-1)+s+2p}{s}\\w'=\frac{w-f-(d-1)*(f-1)+s+2p}{s}
 
 \textbf{Capas de agrupación}
 
-Tipo de capa en la cual se realiza una agrupación por un número fijado de datos. Esta agrupación se puede realizar de diversas formas, como puede ser la media, el mínimo o el máximo. Como en las capas convolucionales se ha de pasar el valor del \textit{stride} para indicar como va a ser el movimiento del segmento de agrupación. Además, se le ha de pasar el tamaño del segmento de agrupación, algo parecido a lo que pasaba con el tamaño del filtro, pero en este caso no hay valores en el filtro, simplemente se agrupan siguiendo una función los datos del segmento. Un ejemplo se puede ver en la figura~\ref{fig:agrupacion}, donde se puede observar como los valores se van agrupando acorde con el valor máximo del segmento o bloque comprobado. Los tamaños de las salida de los datos tras pasar por una capa se pueden calcular con las siguiente fórmulas, donde $f$ pasa a ser el tamaño del segmento o bloque:
+Tipo de capa en la cual se realiza una agrupación por un número fijado de datos. Esta agrupación se puede realizar de diversas formas, como puede ser la media, el mínimo o el máximo, entre otros. Como en las capas convolucionales, se ha de pasar el valor del \textit{stride} para indicar cómo va a ser el movimiento del segmento de agrupación. Además, se le ha de pasar el tamaño del segmento de agrupación, algo parecido a lo que pasaba con el tamaño del filtro, pero en este caso no hay valores en el filtro, simplemente se agrupan siguiendo una función los datos del segmento. Un ejemplo se puede ver en la figura~\ref{fig:agrupacion}, donde se puede observar como los valores se van agrupando acorde con el valor máximo del segmento o bloque comprobado. Los tamaños de las salida de los datos tras pasar por una capa se pueden calcular con las siguiente fórmulas, donde $f$ pasa a ser el tamaño del segmento o bloque:
 
 \begin{equation}
 h'=\left \lfloor \frac{h-f+s}{s} \right \rfloor;w'=\left \lfloor \frac{w-f+s}{s} \right \rfloor
@@ -183,7 +202,7 @@ ResNet o \textit{Residual Network} es un tipo de arquitectura de redes neuronale
 	\label{fig:resnet}
 \end{figure}
 \subsection{Region-Based CNN}
-Las \textit{Region-Based Convolutional Neural Nwtworks} o RCNN son un tipo de redes neuronales convolucionales orientadas al reconocimiento de objetos en imágenes. Este tipo de redes convolucionales, como se puede observar en la figura~\ref{fig:rcnn} tiene 3 módulos~\cite{cnn}:
+Las \textit{Region-Based Convolutional Neural Nwtworks} o RCNN son un tipo de redes neuronales convolucionales orientadas al reconocimiento de objetos en imágenes. Este tipo de redes convolucionales, como se puede observar en la figura~\ref{fig:rcnn}, tiene 3 módulos~\cite{cnn}:
 \begin{itemize}
 	\item Módulo de extracción de propuestas a región.
 	\item Módulo de extracción de características. Uso de redes neuronales convolucionales para la extracción de características de cada región propuesta.
@@ -196,7 +215,7 @@ Las \textit{Region-Based Convolutional Neural Nwtworks} o RCNN son un tipo de re
 	\label{fig:rcnn}
 \end{figure}
 \subsection{FPN}
-FPN o Feature Pyramid Network es un tipo de red neuronal piramidal que se utiliza junto con las redes neuronales convolucionales para tareas relacionadas con las imágenes, tales como la detección de objetos (usándose junto una RCNN) o la segmentación. Este tipo de redes, como se puede observar en la figura~\ref{fig:fpn}, tienen dos fases~\cite{fpn}:
+FPN o Feature Pyramid Network es un tipo de red neuronal piramidal que se utiliza junto con las redes neuronales convolucionales para tareas relacionadas con las imágenes, tales como la detección de objetos (usándose junto una RCNN) o la segmentación. Este tipo de redes, como se puede observar en la figura~\ref{fig:fpn}, tiene dos fases~\cite{fpn}:
 \begin{itemize}
 	\item \textit{Bottom-up pathway}: Fase en la cual se utiliza la red neuronal convolucional para extraer características de la imagen, como por ejemplo con ResNet. Cada capa dentro de esta red neuronal convolucional es de la mitad del tamaño que la anterior (por lo que hay que tener en cuenta todos los atributos de las capas de una red neuronal ya comentados). En el ejemplo de ResNet se obtiene la salida de cada capa como el resultado de cada bloque residual.
 	\item \textit{Top-down pathway and lateral connections}: En esta fase, en el primer nivel, se toma como entrada la salida de la última capa de la fase anterior, y se va bajando de nivel pasando al siguiente nivel la predicción del anterior y la salida de la capa de la red neuronal que está al mismo nivel.
@@ -209,4 +228,16 @@ FPN o Feature Pyramid Network es un tipo de red neuronal piramidal que se utiliz
 \end{figure}
 
 \section{Puntos y vectores}
-Distancia entre vectores, punto medio, ángulo entre vectores
+El punto es la representación mínima en una espacio, donde representa una posición exacta dentro de este espacio. Un punto dentro de un espacio se representa con tantos valores como dimensiones tiene el espacio donde se encuentra.
+
+El vector es otro de los conceptos básicos matemáticos que se define como un segmento orientado. Un vector se representa a partir de 3 valores, su módulo o longitud del segmento, su dirección y su sentido.
+
+\subsection{Distancia entre puntos}
+La distancia entre dos puntos es el espacio que los separa. Esta distancia se puede calcular de distintas formas, ya que depende mucho del espacio en el que se encuentren los puntos. Algunas de las distancias más comunes son:
+\begin{itemize}
+	\item \textbf{Manhattan}: distancia que se calcula como la suma de las diferencia de los valores de las distintas dimensiones de los puntos.
+	\item \textbf{Euclídea}: distancia que se calcula como la longitud de la línea que une los dos puntos, a partir del teorema de Pitágoras.
+\end{itemize}
+
+\subsection{Ángulo entre vectores}
+Ángulo mínimo que hay que girar un vector para conseguir la dirección del otro vector con el cual ha de compartir al menos un punto~\cite{angvec}.

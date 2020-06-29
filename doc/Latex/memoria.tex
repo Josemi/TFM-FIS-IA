@@ -349,13 +349,56 @@
   }
 \makeatother
 
+\usepackage{subcaption}
+
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
 
 \usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+		language=Python,
+		basicstyle=\ttm,
+		otherkeywords={self},             % Add keywords here
+		keywordstyle=\ttb\color{deepblue},
+		emph={MyClass,__init__},          % Custom highlighting
+		emphstyle=\ttb\color{deepred},    % Custom highlighting style
+		stringstyle=\color{deepgreen},
+		frame=tb,                         % Any extra options here
+		showstringspaces=false            % 
+}}
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+	\pythonstyle
+	\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+		\pythonstyle
+		\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+\usepackage{dirtree}
+
 
 \newcommand{\nombre}{José Miguel Ramírez Sanz} %%% cambio de comando
 
 % Datos de portada
-\title{Algo muy largo y no sé que más puedo hacer aquí}
+\title{Detección y comparación de posturas en un flujo de imágenes}
 \author{\nombre}
 \tutor{Dr. José Francisco Díez Pastor\\Dr. Álvar Arnaiz González}
 \date{\today}
@@ -436,12 +479,18 @@ Dr. Álvar Arnaiz González
 % Abstract en castellano
 \renewcommand*\abstractname{Resumen}
 \begin{abstract}
-En este primer apartado se hace una \textbf{breve} presentación del tema que se aborda en el proyecto.
+	El \textit{\textbf{Parkinson}} es un trastorno neurodegenerativo que afecta al sistema nervioso de la persona. Esta enfermedad afecta principalmente a \textbf{personas mayores}. Una de las mejores formas de mejorar la vida de los pacientes que padecen esta enfermedad son las \textbf{rehabilitaciones}, donde un médico o terapeuta ayuda a mejorar la \textbf{movilidad} y la \textbf{autonomía} del paciente.
+	
+	En la actualidad, estas rehabilitaciones se hacen de forma \textbf{presencial}, teniendo que ser el paciente el que se \textbf{desplace} hasta el \textbf{centro de salud}. Además, con la constante \textbf{despoblación} que sufren las \textbf{zonas rurales} de España, el número de centro de salud se ha reducido considerablemente, haciendo así que los pacientes tengan que \textbf{desplazarse} a otras localidades para hacer sus rehabilitaciones, que teniendo en cuenta su dependencia y su elevada edad es un \textbf{gran problema}.
+	
+	Es por ello que surgió el \textbf{proyecto} <<Estudio de factibilidad y coste-efectividad del uso telemedicina con un equipo multidisciplinar para enfermedad de Parkinson>>, donde se ha desarrollado una aplicación que permite realizar rehabilitaciones de manera \textit{\textbf{online}} sin necesidad de que el paciente se desplace a un centro de salud.
+	
+	Dentro del desarrollo de este proyecto se encuentra el \textbf{subproyecto} que se ha realizado en este Trabajo Fin de Máster, un \textbf{estudio del estado del arte} para la selección de un modelo de \textbf{visión artificial} capaz de estimar la posición de una persona en una imagen, y posterior \textbf{implementación} de un \textbf{sistema de extracción de características y comparación de posiciones}. Todo ello con la \textbf{finalidad} de poder comparar los ejercicios realizados por el paciente con los grabados por los terapeutas. Este desarrollo permite la \textbf{automatización} de las rehabilitaciones \textit{online}, así como una continua \textbf{retroalimentación} de la evolución del paciente \textbf{mejorando} así su \textbf{frecuencia} de trabajo y su \textbf{motivación} por mejorar.
 \end{abstract}
 
 \renewcommand*\abstractname{Descriptores}
 \begin{abstract}
-Palabras separadas por comas que identifiquen el contenido del proyecto Ej: servidor web, buscador de vuelos, android \ldots
+\textit{Parkinson}, rehabilitación, flujo de datos, \textit{Big Data}, visión artificial, investigación.
 \end{abstract}
 
 \clearpage
@@ -449,12 +498,19 @@ Palabras separadas por comas que identifiquen el contenido del proyecto Ej: serv
 % Abstract en inglés
 \renewcommand*\abstractname{Abstract}
 \begin{abstract}
-A \textbf{brief} presentation of the topic addressed in the project.
+\textit{\textbf{Parkinson}} is a neurodegenerative disorder that affects the nervous sytem of the person. This illness affects mainly to \textbf{old people}. One of the best ways to improve patient's lives that suffer this illness is \textbf{rehabilitation}, where a doctor or a therapist helps to improve the patient's \textbf{mobility} and \textbf{autonomy}.
+
+Nowadays, rehabilitations are made \textbf{face-to-face}, been the patient the one who has to \textbf{travel} to the \textbf{clinic}. Furthermore, with the constant \textbf{depopulation} that suffers \textbf{rural zones} of  Spain, the number of clinics has been reduced considerably, causing patients to have to \textbf{move} to others locations to do their rehablitations, that considering their dependecy and their old age, it is a \textbf{big problem}.
+
+That is why ``Feasibility and cost-effectiveness study of telemedicine use with a multidisciplinary team for Parkinson's disease'' \textbf{project} surged, where an application has been developed to allow \textbf{online} rehabilitation without the need for the patient to move to the clinic.
+
+Inside this project, there is a \textbf{subproject} that has been done in this End of Master's Project, a \textbf{state of art study} to select the best \textbf{computer vision} model to estimate the posture of a person in an image, and the \textbf{implementation} of an \textbf{feature extraction system and postures comparation}. All with the \textbf{purpose} of to be able to compare patient's exercises to therapist's exercises. This development allows the \textbf{automation} of online rehabilitations, as well as continuos \textbf{feedback} on the patient´s evolution, thus \textbf{improving} their exercise \textbf{frequency} and their \textbf{motivation} to improve.
+
 \end{abstract}
 
 \renewcommand*\abstractname{Keywords}
 \begin{abstract}
-keywords separated by commas.
+\textit{Parkinson}, rehabilitation, data stream, \textit{Big Data}, computer vision, research.
 \end{abstract}
 
 \clearpage
@@ -495,7 +551,7 @@ keywords separated by commas.
 \part*{Apéndices}
 
 \include{./tex/A_Plan_proyecto}
-\include{./tex/B_Requisitos}
+%\include{./tex/B_Requisitos}
 \include{./tex/C_Diseno}
 \include{./tex/D_Manual_programador}
 \include{./tex/E_Manual_usuario}

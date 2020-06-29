@@ -1,11 +1,131 @@
 \apendice{Documentación técnica de programación}
 
 \section{Introducción}
-
+En este apartado se encuentran los puntos que ha de conocer una persona, con conocimientos en informática, que quiera utilizar los distintos elementos del proyecto. Es por ello que este apartado se divide en los siguientes subapartados:
+\begin{itemize}
+	\item \textbf{Estructura de directorios}: subapartado donde se comenta la estructura del proyecto. El proyecto además se puede observar en el repositorio de \textit{GitHub}, donde a parte de la estructura y los documentos del proyecto se pueden observar las tareas que se han realizado.
+	\item \textbf{Manual del programador}: manual en donde se muestran los pasos a seguir para poder continuar desarrollando el proyecto.
+	\item \textbf{Compilación, instalación y ejecución del proyecto}: explicación paso a paso para conseguir utilizar los distintos elementos implementados en el proyectos.
+	\item \textbf{Pruebas del sistema}: explicación de las distintas pruebas realizadas en la fase de investigación y de despliegue del proyecto, así como explicación de como lanzar estas pruebas.
+\end{itemize}
 \section{Estructura de directorios}
+En este subapartado se va a comentar la estructura y el contenido de los directorios del proyecto que se encuentra subido a un repositorio público en \textit{GitHub}\footnote{Repositorio: \href{https://github.com/Josemi/TFM-FIS-IA}{https://github.com/Josemi/TFM-FIS-IA}}. Empezando con la raíz del proyecto que tiene la siguiente estructura:
+\dirtree{%
+	.1 /.
+	.2 \textbf{src}.
+	.2 \textbf{doc}.
+	.2 README.md.
+	.2 LICENSE.
+	.2 .gitignore.
+}
+
+Como se puede ver, de la raíz cuelgan dos carpetas, src y doc, y tres documentos que se usan para el repositorio en \textit{GitHub}. La funcionalidad de estos ficheros es:
+\begin{itemize}
+	\item README.md: documento que permite mostrar información cuando se abre el repositorio en la página de \textit{GitHub}. Este tipo de documentos se encuentran en la mayoría de los directorios del proyecto para informar que se encuentra en ellos.
+	\item LICENSE: documento que permite mostrar la licencia del proyecto en \textit{GitHub}.
+	\item .gitignore: documento oculto que permite señalar que directorios o ficheros no se quieren subir al repositorio público.
+\end{itemize}
+
+\subsection{Documentación}
+En cuanto a las carpetas se va a empezar comentando la estructura del directorio doc, directorio donde se encuentra toda la documentación del proyecto, que tiene la siguiente composición:
+\dirtree{%
+	.1 /doc/.
+	.2 \textbf{Diagramas}.
+	.2 \textbf{Latex}.
+	.2 \textbf{Vídeos}.
+}
+
+En el directorio Diagramas se encuentran todos los documentos de diseño realizados para el proyecto, la exportación de estos documentos se encuentra dentro del otro directorio Latex. Para realizar los diseños se han utilizado distintos programas como son DIA~\cite{dia} y StarUML~\cite{staruml}.
+
+En la carpeta Vídeos se encuentran una serie de vídeos que hacen un resumen de la estructura del proyecto, así como muestran alguna ejecución de alguna parte del proyecto.
+
+Por otro lado, la carpeta Latex contiene todos los documentos necesarios para la documentación en \LaTeX de la memoria y de los apéndices del proyecto. Cabe destacar que en la carpeta \textit{/doc/Latex/img} se encuentran las exportaciones de los diagramas comentados, además del resto de imágenes usadas en el documento.
+
+\subsection{Código}
+El código de las implementaciones y las pruebas se encuentra en la carpeta \textit{/src}, de la cual cuelga los siguientes subdirectorios:
+\dirtree{%
+	.1 /src/.
+	.2 \textbf{pruebas}.
+	.2 \textbf{pos}.
+	.2 \textbf{python-flujo}.
+	.2 visualizarComparacion.ipynb.
+}
+
+Como se puede observar, hay tres carpetas de código y un fichero \textit{Jupyer Notebook}, las cuales corresponden con:
+\begin{itemize}
+	\item \textbf{pruebas}: conjunto de pruebas de usadas en \textit{Detectron2} desde la selección del modelo y del \textit{threshold} hasta las pruebas con los problemas con los brazos.
+	\item \textbf{pos}: conjunto de ficheros de \textit{Jupyter Notebooks} donde se encuentran las versiones de las posiciones y de la comparación, junto con las pruebas de tiempo de ejecución.
+	\item \textbf{python-flujos}: conjunto de ficheros \textit{Python} donde se encuentran todas las versiones implementadas tanto de la posición como de comparación de posiciones. Además, se encuentra el fichero \textit{fishubuia.py} donde se encuentra la implementación que junto con el fichero \textit{PosicionVF.py} permite la ejecución del cálculo de la posición y comparación en el flujo.
+	\item \textbf{visualizarComparacion.ipynb}: fichero \textit{Jupyter Notebook} creado para mostrar el funcionamiento de la comparación y aplicar los conocimientos de visualización de datos obtenidos durante diversas asignaturas del máster para mostrar información relevante sobre esta. Con esto también se quiere mostrar la capacidad que tiene el sistema implementado.
+\end{itemize}
 
 \section{Manual del programador}
+Como se ha explicado, el código final se encuentra en la carpeta \textit{/src/python-flujo}, donde están todas las versiones de la clase de la posición y todas las versiones de las comparaciones de estas. Además, se encuentra el fichero final que permite, a partir de una clase llamada \texttt{Interfaz}, llevar todo el proceso necesario en el flujo: carga del modelo final, liberación de memoria de la GPU, obtención y comparación de las posiciones.
+
+Aun así, como se ha realizado en el desarrollo de este proyecto, se aconseja la implementación de nuevos algoritmos en \textit{Jupyter Notebook}~\cite{Kluyver:2016aa}, ya que como se ha podido ver en el máster, es una herramienta para desarrollar y ejecutar código muy sencilla y muy usada, sobre todo en la programación en \textit{Python}. Y una vez se haya probado su correcto funcionamiento pasar su implementación a ficheros \textit{Python} (extensión \textit{.py}).
+
+Por último, si se desea continuar con las pruebas realizadas se pueden añadir a la carpeta \textit{/src/pruebas} o a \textit{/src/pos} (para pruebas relacionadas con la duración de la ejecución sobre las versiones ya implementadas) donde se encuentran los distintos \textit{Jupyter Notebooks} con las pruebas implementadas. Se recomienda añadir una carpeta con datos y crear otra para la salida de los algoritmos, como se ha realizado en el proyecto (aunque no se incluyen en el repositorio en \textit{GitHub}).
 
 \section{Compilación, instalación y ejecución del proyecto}
+En este apartado se comenta los requisitos necesarios para ejecutar las implementaciones del proyecto, el proceso de instalación de la herramienta principal sobre la que se sustenta el proyecto, \textit{Detectron2}, y por último la forma de ejecutar las implementaciones.
+
+\subsection{Requisitos}
+Los requisitos, en informática, son las características mínimas necesarias para ejecutar un programa. Estos requisitos pueden ser de dos tipos:
+\begin{itemize}
+	\item \textbf{\textit{Software}}:
+	\begin{itemize}
+		\item Consola \textit{Unix} o \textit{macOS}.
+		\item \textit{Python} 3.
+		\item Instalación \textit{drivers} de \textit{CUDA}, versión de 9.2 a 10.2.
+		\item Librerías:
+		\begin{itemize}
+			\item \textit{Numpy}.
+			\item \textit{Pickle}.
+			\item \textit{Pandas}.
+			\item \textit{OpenCV} (\textit{cv2}).
+			\item \textit{Garbage Collector} (\textit{gc}).
+			\item Librería de manejo \textit{NVIDIA} (\textit{pynvml}).
+			\item \textit{Matplotlib}.
+			\item \textit{Seaborn}.
+			\item \textit{Plotly}.
+			\item \textit{PyTorch} (\textit{torch}).
+			\item \textit{Torchvision}.
+			\item \textit{Math}.
+			\item \textit{Os}.
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{\textit{Hardware}}:
+	\begin{itemize}
+		\item Tarjeta gráfica con \textit{drivers CUDA} con al menos 1GB de memoria.
+	\end{itemize}
+\end{itemize}
+
+Todas las librerías comentadas funcionan con su última versión, excepto \textit{PyTorch}. Con \textit{PyTorch} hay que instalar la versión para los \textit{drivers} de \textit{CUDA} instalados, esto se puede hacer con el comando <<\texttt{conda install pytorch torchvision cudatoolkit=[versión] -c pytorch}>>~\cite{paszke2017automatic}. Si ya se tiene unos \textit{drivers} instalados se puede comprobar su versión con el comando <<\texttt{nvcc --version}>>.
+
+El resto de librerías se pueden instalar normal desde consola con el comando <<\texttt{pip install [librería]}>> o usando \textit{Jupyter Notebook} en una celda de ejecución con el comando <<\texttt{!pip install [librería]}>>.
+
+Los requisitos dados son para ejecutar el código programado, no para lanzar los algoritmos en un flujo.
+
+\subsection{Instalación}
+Una vez se cumplen los requisitos para poder ejecutar las implementaciones, se ha de instalar la herramienta sobre las que se sustenta todo el proyecto, \textit{Detectron2}. Para poder realizar la instalación se puede realizar de dos maneras dependiendo si se prefiere clonar el repositorio o instalar solo lo necesario~\cite{inst}.
+
+Para realizar la instalación a partir del clonado se ha de ejecutar primero el comando de clonado del repositorio en \textit{GitHub} con <<\texttt{git clone https://github.com/facebookresearch/detectron2.git}>>. Una vez ha terminado la clonación del repositorio se ha de instalar, estando en el directorio donde se ha clonado, la herramienta con el comando <<\texttt{python -m pip install -e detectron2}>>.
+
+Por otro lado, si se desea realizar la instalación sin clonar el repositorio entero se puede hacer a partir de los enlaces del documento de instalación disponible en el repositorio~\cite{inst}. En este documento hay una tabla donde muestran los distintos comandos de instalación dependiendo de la vewrsión \textit{CUDA} y \textit{PyTorch} instalada. Por ejemplo, para la versíón 10.2 de \textit{CUDA} y la versión de \textit{PyTorch} 1.5 se utilizaría el comando: <<\texttt{python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu102/torch1.5/index.html}>>.
+
+Cabe destacar, que existe un \textit{notebook}~\footnote{\href{https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5}{\textit{Google Colab Detectron2}}} en \textit{Google Colab} donde se puede probar la herramienta sin realizar ninguna instalación en el dispositivo local.
+
+\subsection{Ejecución}
+Como ya se ha explicado, los códigos implementados están almacenados en dos tipos distintos de ficheros: \textit{Python} y \textit{Jupyter Notebook}. Si se desea ejecutar lo código en \textit{Python} se han de importar para su posterior uso. En cambio, los ficheros de \textit{Jupyter Notebook} se pueden ejecutar desde ese mismo entorno simplemente ejecutando las celdas en el orden de aparición.
+
+Si se quiere usar el código de la última versión para el flujo simplemente se ha de descargar la última \textit{release} y en el código donde se realizan las operaciones del flujo importar la clase \texttt{Interfaz} dentro del fichero \textit{fishubuia.py} y llamar a sus funciones para realizar las estimaciones de la posición, comparar posiciones y liberar la memoria.
+
+Cabe decir que es necesario tener espacio libre en la memoria de la GPU para ejecutar cualquier operación con el modelo, ya sea cargarlo o estimar con el. Es importante este espacio porque sino \textit{CUDA} devuelve un error por falta de espacio, es por ello que se implementó una función que libera espacio de la memoria para poder ejecutar más de un modelo.
 
 \section{Pruebas del sistema}
+Como se ha podido observar, el proyecto ha tenido dos fases bien diferenciadas, una primera fase donde se ha realizado primero un estudio del estado del arte de las herramientas de visión artificial capaces de estimar la posición de una persona y después, una vez se había elegido la herramienta, un segundo estudio del estado del arte de los distintos modelos proporcionados por la herramienta, con el posterior estudio de sus parámetros y salidas. Y una segunda fase, donde a partir del estudio realizado en la fase anterior, se realizaron distintas implementaciones para la extracción de características de la salida del modelo seleccionado (clase de la posición) y la comparación de posiciones.
+
+El desarrollo de estas dos fases se ha seguido bajo una continua evaluación por pruebas con distinta finalidad, en la primera fase se usaron pruebas que permitían conocer y evaluar los distintos modelos de \textit{Detectron2} y evaluar el efecto del \textit{threshold} sobre las estimaciones. Mientras que en la segunda fase las pruebas se centraron en comprobar el correcto funcionamiento de la extracción de características y de la comparación de las posiciones obtenidas. Dentro de estas pruebas para comprobar el funcionamiento de las implementaciones se dividieron en dos ramas dependiendo de con qué datos se trabajaba, ya que se han implementado pruebas de funcionamiento sobre vídeos parecidos a los que se pueden realizar a una rehabilitación de pacientes con \textit{Parkinson}, pero además se han utilizado imágenes especiales que pueden llevar a error en la comparación de posiciones (como se han podido ver a lo largo del documento, especialmente en las pruebas con los brazos). Además, sobre esta segunda fase se han realizado otro tipo de pruebas, estas son las relacionadas con la duración de la ejecución de los algoritmos y el cálculo del número de \textit{workers} en la paralelización del flujo.
+
+Como se puede observar, este tipo de pruebas (que como se ha comentado se encuentran en las carpetas \textit{/src/pos} y \textit{/src/pruebas}) no son pruebas que puedan dar una evaluación objetiva sobre el funcionamiento del sistema como puede ser la evaluación de un algoritmo de aprendizaje supervisado o no supervisado. Aun así, estás pruebas han sido esencial en todas las fases del desarrollo para poder seleccionar el modelo correcto, seleccionar los parámetros que mejor se ajusten al problema planteado y poder comprobar el funcionamiento de las implementaciones realizadas.
+
