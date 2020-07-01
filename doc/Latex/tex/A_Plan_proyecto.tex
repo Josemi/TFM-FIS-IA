@@ -68,7 +68,7 @@ En este \textit{sprint} se ha terminado de implementar las versiones finales de 
 	\item Modificaciones hechas por la segunda revisión de la memoria.
 \end{itemize}
 
-\subsection{\textit{Sprint} 6: 13/06/2020 - 27/07/2020}
+\subsection{\textit{Sprint} 6: 13/06/2020 - 27/06/2020}
 Este fue el primer \textit{sprint} de la recta final del proyecto, donde se comenzó con la unión del proyecto con el flujo implementado del compañero y con las pruebas referentes a este proceso, que por la cantidad de datos y pruebas que se realizaron no se pudo terminar en este \textit{sprint}. Además, en este \textit{sprint} se comenzó a documentar las distintas partes de la memoria que se tenían planteadas pero no documentadas, en este apartado entra:
 \begin{itemize}
 	\item Documentación del manual del programador.
@@ -86,6 +86,83 @@ En este apartado se va a comentar la viabilidad del proyecto tanto de forma econ
 
 \subsection{Viabilidad económica}
 
+En este subapartado se encuentran los cálculos económicos del proyecto general. Para ello se han realizado los cálculos de manera conjunta con José Luis Garrido Labrador, para así poder abarcar el conjunto completo del proyecto desde el desarrollo de la aplicación hasta el desarrollo del flujo y la comparación de ejercicios.
+
+Para realizar el cálculo se han divido los gastos en:
+\begin{itemize}
+	\item \textbf{Coste personal} (tabla~\ref{tab:costes_personal}): contratación del personal de investigación y desarrollo del proyecto.
+	\item \textbf{Coste \textit{hardware}} (tabla~\ref{tab:costes_hardware}): dispositivos \textit{hardware} necesarios en el proyecto.
+	\item \textbf{Coste servicios} (tabla~\ref{tab:costes_servicios}): conjunto de servicios necesarios para el funcionamiento del proyecto.
+\end{itemize}
+
+\begin{table}\centering
+	\begin{tabular}[]{@{}l r@{}}
+		\toprule
+		\textbf{Concepto} & \textbf{Coste (\euro{})} \\
+		\midrule
+		Salario mensual bruto & 2.047,78~\cite{salariales} \\
+		Seguridad Social (30,04\%) & 615,15 \\
+		Retención IRPF (2\%) & 28,65 \\
+		Salario mensual neto & 1.403,97 \\\hubu
+		\textbf{Total 6 meses y dos empleados} &  24.573,36 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Costes de personal.}
+	\label{tab:costes_personal}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}[]{@{}l c r@{}}
+		\toprule
+		\textbf{Concepto} & \textbf{Coste (\euro{})} & \textbf{Coste amortizado (\euro{})} \\
+		\otoprule
+		Ordenador de desarrollo (x2) & 950 &  59,37\\
+		Dispositivos pacientes (x9) & 100 & 6,25\\
+		\textit{Webcam} pacientes (x9) & 150 &9,38\\
+		\textit{MainFrame Gamma}  & 3.000 & 187,5 \\ 
+		\textit{Gamma} GPU (x3) & 1.500 &  93,75\\
+		\textit{MainFrame Alpha}  & 2.000 & 125 \\\hubu
+		\textbf{Total} & 13.650 & 853,16\\
+		\bottomrule
+	\end{tabular}
+	\caption{Costes de \textit{hardware}.}
+	\label{tab:costes_hardware}.
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}[]{@{}l r@{}}
+		\toprule
+		\textbf{Concepto} & \textbf{Coste (\euro{})}\\
+		\otoprule
+		Suscripción \textit{Ngrok}  & 7,33 \\
+		Lineas \textit{Vodafone} (x4) & 30 \\\hubu
+		\textbf{Total (por 6 meses)} & 763,98\\
+		\bottomrule
+	\end{tabular}
+	\caption{Costes de servicios.}
+	\label{tab:costes_servicios}.
+\end{table}
+
+Finalmente se ha realizado un cálculo final del coste del proyecto, tabla~\ref{tab:coste_final}.
+
+\begin{table}
+	\centering
+	\begin{tabular}[]{@{}l r@{}}
+		\toprule
+		\textbf{Tipo} & \textbf{Coste (\euro{})}\\
+		\otoprule
+		Personal  & 24.573,36 \\
+		\textit{Hardware}& 13.650 \\
+		Servicios & 763,98\\\hubu
+		\textbf{Total}&38.987,34\\
+		\bottomrule
+	\end{tabular}
+	\caption{Costes final.}
+	\label{tab:coste_final}.
+\end{table}
+
 \subsection{Viabilidad legal}
 En este subapartado se va a comentar las distintas licencias que tienen las herramientas y librerías utilizadas en el proyecto, así como se comenta la licencia final que tiene el proyecto.
 
@@ -98,18 +175,14 @@ Las licencias de las librerías y herramientas utilizadas en el desarrollo del p
 			\textbf{Librería-Herramienta}&\textbf{Licencia}\\
 			\midrule
 			\textit{Numpy} & BSD 3\\
-			\textit{Pickle} & PSF\\
 			\textit{Pandas} & BSD 3\\
 			\textit{OpenCV}& BSD 3\\
-			\textit{Garbage Collector} &  PSF\\
-			\textit{Pynvml} & BSD\\
+			\textit{Pynvml} & BSD 3\\
 			\textit{Matplotlib} &  PSF\\
 			\textit{Seaborn} & BSD 3\\
 			\textit{Plotly} & MIT\\
-			\textit{Pytorch} & BSD \\
 			\textit{Torchvision} & BSD 3\\
-			\textit{Math}&PSF\\
-			\textit{Os}&PSF\\
+			\textit{Python} & PSF\\
 			\textit{Detectron2}& Apache 2.0\\
 			\bottomrule
 		\end{tabular}
@@ -117,4 +190,6 @@ Las licencias de las librerías y herramientas utilizadas en el desarrollo del p
 	\label{tab:lic}
 \end{table}
 
+Teniendo en cuenta estas licencias, y las licencias de las herramientas usadas tanto en la aplicación final de rehabilitación y las licencias de las herramientas y librerías usadas por el compañero se ha decido utilizar la licencia \textit{GPL v3.0} a partir de las licencias más restrictivas.
 
+Con esta licencia \textit{GPL v3.0} se puede utilizar el \textit{software} desarrollado para uso comercial, se puede modificar las implementaciones realizadas,  distribuirlas, realizar patentes sobre ellas y usarlas de forma privada.
