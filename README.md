@@ -67,3 +67,5 @@ patient’s exercises to therapist’s exercises. This development allows
 the automation of online rehabilitations, as well as continuos feedback
 on the patient´s evolution, thus improving their exercise frequency
 and their motivation to improve.
+
+![Demostración visualización](doc/Latex/img/demo.PNG)
