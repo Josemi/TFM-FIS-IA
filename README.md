@@ -2,6 +2,8 @@
 
 **Detección y comparación de posturas en un flujo de imágenes.**
 
+TFM. Máster universitario de Inteligencia de Negocio y Big-Data en Entornos Seguros en las Universidades de Burgos, León y Valladolid
+
 **Realizado por**: José Miguel Ramírez Sanz.
 
 **Tutores**: Dr. Álvar Arnaiz González y Dr. José Francisco Diez Pastor.
