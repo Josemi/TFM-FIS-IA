@@ -3,15 +3,15 @@
 En este apartado se van a explicar los distintos conceptos teóricos necesarios para comprender correctamente el proyecto.
 
 \section{Vídeo}
-El vídeo es un tipo de datos compuesto por un conjunto de imágenes, y en algunos casos, una señal de audio sincronizada con las imágenes. Existen diversos formatos para vídeos que dependen de la codificación de los datos que utiliza, pero los más comunes son \textit{mp4}, \textit{avi}, \textit{webm}\ldots A parte de la compresión de la propia codificación, el tamaño de este tipo de datos depende principalmente de dos factores: la cantidad de fotogramas por segundo y la resolución de los fotogramas.
+El vídeo es un tipo de datos compuesto por un conjunto de imágenes, y en algunos casos, una señal de audio sincronizada con ellas. Existen diversos formatos para vídeo que dependen de la codificación de los datos que utiliza, pero los más comunes son \textit{mp4}, \textit{avi}, \textit{webm}\ldots Aparte de la compresión de la propia codificación, el tamaño de este tipo de datos depende principalmente de dos factores: la cantidad de fotogramas por segundo y la resolución de los fotogramas.
 \subsection{Fotogramas por segundo -- FPS}
-Los fotogramas por segundo son una medida esencial en los vídeos que determina la cantidad de fotogramas que hay por segundo de vídeo. Esta medida está muy relacionada con la finalidad del vídeo, ya que no se necesitan los mismos fotogramas por segundo para una película, que suele ser 24 fps~\cite{fpscine}, que para ver un documental de deporte. Cabe destacar, que a la hora de visualizar un vídeo es importante la tasa de refresco del monitor, para que se pueda apreciar correctamente la cantidad de fotogramas por segundo del vídeo se necesita una tasa de refresco igual o superior. Esto quiere decir que si un vídeo está a 60 fps lo recomendable para ver correctamente el vídeo es que el monitor tenga al menos 60Hz de tasa de refresco.
+Los fotogramas por segundo son una medida esencial en los vídeos que determina la cantidad de imágenes que hay por cada segundo de vídeo. Esta medida está muy relacionada con la finalidad del vídeo, ya que no se necesitan los mismos fotogramas por segundo para una película, que suele ser 24 fps~\cite{fpscine}, que para ver un documental de deporte. Cabe destacar, que a la hora de visualizar un vídeo es importante la tasa de refresco del monitor, para que se pueda apreciar correctamente la cantidad de fotogramas por segundo del vídeo se necesita una tasa de refresco igual o superior. Esto quiere decir que si un vídeo está a 60 fps lo recomendable para ver correctamente el vídeo es que el monitor tenga al menos 60Hz de tasa de refresco.
 \subsection{Calidad o resolución}
 La calidad de las imágenes del vídeo es otro de los parámetros más importantes, ya que dependiendo de este valor el vídeo pesará más o menos o se verá mejor o peor. Actualmente la proporción más normal de pantalla es 16:9, las calidades más comunes para esta proporción son:
 \begin{itemize}
 	\item 480p $\rightarrow$ 854 x 480.
 	\item 720p HD $\rightarrow$ 1280 x 720.
-	\item 1080 p Full HD $\rightarrow$ 1920 x 1080 .
+	\item 1080p Full HD $\rightarrow$ 1920 x 1080.
 	\item 1440p QHD $\rightarrow$ 2560 x 1440.
 \end{itemize}
 \section{Visión por computador}
@@ -51,11 +51,11 @@ Es otra de las funciones más usadas de la visión por computador, en ella se bu
 \section{Redes neuronales}
 Son modelos basados en la analogía con la corteza cerebral de los mamíferos, aunque no están cerca, al menos de momento, de ser tan complejos como el cerebro biológico. El funcionamiento de estos modelos es relativamente sencillo, ya que <<solo>> son un conjunto de unidades básicas (también llamadas neuronas), que reciben una entrada y devuelven una salida. Donde realmente reside su complejidad, al igual que en el cerebro humano, es en las conexiones de estas unidades básicas para formar un modelo complejo capaz de realizar multitud de tareas~\cite{cnn}.
 
-Estas unidades interactúan con los datos que les llegan con una función de activación que puede excitar a esta unidad o neurona y así pasar la información modificada a sus conexiones. Además, las distintas conexiones entre las unidades tienen un peso definido, que expresa la fuerza del enlace. Este peso se modifica a lo largo del entrenamiento de la red para poder obtener mejores resultados.
+Estas unidades interactúan con los datos que les llegan mediante una función de activación que puede excitar a esta unidad o neurona y así pasar la información modificada a sus conexiones. Además, las distintas conexiones entre las unidades tienen un peso definido, que expresa la fuerza del enlace. Este peso se modifica a lo largo del entrenamiento de la red para poder obtener mejores resultados.
 
 Según como se propague la información por la red, estas pueden dividirse en dos tipos:
 \begin{itemize}
-	\item \textbf{\textit{Feed-forward networks}:} redes neuronales donde la información solo avanza por ésta hacia delante, no existe ningún tipo de bucle entre las conexiones de las unidades que haga pasar la información dos o más veces por una de éstas. En este tipo de redes neuronales se encuentran el perceptrón multicapa y las redes neuronales convolucionales
+	\item \textbf{\textit{Feed-forward networks}:} redes neuronales donde la información solo avanza por ésta hacia delante, no existe ningún tipo de bucle entre las conexiones de las unidades que haga pasar la información dos o más veces por una de éstas. En este tipo de redes neuronales se encuentran el perceptrón multicapa y las redes neuronales convolucionales.
 	\item \textbf{\textit{Feed-back networks}:} redes neuronales que sí admiten bucles entre sus conexiones, lo que les permite tener capacidad de memorización. Algún ejemplos de este tipo de redes son las redes neuronales recurrentes o las \textit{Long-Short Term Memory}~\cite{lstm}.
 \end{itemize}
 \subsection{Redes neuronales convolucionales}
@@ -68,16 +68,16 @@ Las redes neuronales convolucionales o CNNs~\cite{cnn}, de sus siglas en inglés
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{cnn}
-	\caption{Organización de una red neuronal convolucional~\cite{cnn}.}
+	\caption[Organización de una red neuronal convolucional.]{Organización de una red neuronal convolucional~\cite{cnn}.}
 	\label{fig:cnn}
 \end{figure}
 
 Cada fase está relacionada con un paradigma de aprendizaje distinto, ya que en la extracción de características a partir de filtros se realiza de forma no supervisada, mientras que en la fase de clasificación se realiza un aprendizaje supervisado a partir de los datos obtenidos en la fase de extracción de características.
 
 
-Aun así, el primer paso que siempre se ha de llevar a cabo antes de entrar en las distintas capas es realizar un preprocesado de la imagen. Éste puede ser por:
+Aun así, el primer paso que siempre se ha de llevar a cabo antes de entrar en las distintas capas es realizar un preprocesado de la imagen. Éste puede realizarse mediante:
 \begin{itemize}
-	\item Extracción de la media, para a partir de ésta poder centrar los datos. Para cada dato de entrenamiento $x$ de un conjunto $N$ tal que $x \epsilon \mathbb{R}^{h*w*c}$, donde $h$ es el alto de la imagen, $w$ es el ancho y $c$ es color (normalmente 3 dimensiones, RGB), se puede definir la extracción de la media con la siguiente fórmula:
+	\item Substracción de la media, para a partir de ésta poder centrar los datos. Para cada dato de entrenamiento $x$ de un conjunto $N$ tal que $x \epsilon \mathbb{R}^{h*w*c}$, donde $h$ es el alto de la imagen, $w$ es el ancho y $c$ es color (normalmente 3 dimensiones, RGB), se puede definir la extracción de la media con la siguiente fórmula:
 	\begin{equation}
 	x'=x-\widehat{x}, \widehat{x}=1/N\sum_{i=1}^{N}x_i
 	\end{equation}
@@ -89,9 +89,11 @@ Aun así, el primer paso que siempre se ha de llevar a cabo antes de entrar en l
 	\item \textit{Local Contrast Normalization}, tipo de normalización que permite resaltar los valores más elevados.
 \end{itemize}
 
-Los tipos de preprocesados que se suelen realizar son las extracción de la media y la normalización, que a la vez son los métodos más sencillos.
+Los tipos de preprocesados que se suelen realizar son la substracción de la media y la normalización, que a la vez son los métodos más sencillos.
 
 \subsubsection{Tipos de capas en una red neuronal convolucional}
+A continuación se exponen los tipos de capas más comunes en una red neuronal convolucional.
+
 \textbf{Capas convolucionales}
 
 Como ya se ha comentado, la funcionalidad de estas capas es la extracción de características a partir de filtros, pero ¿qué es un filtro? Un filtro es una malla con valores discretos, normalmente cuadrada, que representan pesos que se modifican en la fase de entrenamiento de la red. Es con cada uno de estos filtros con los que se recorren los datos para obtener como resultado un resumen de los datos de entrada. Como se ve en la figura~\ref{fig:filtro}, el resumen se calcula aplicando el filtro a los datos multiplicando los valores de los datos por su posición en el filtro y luego sumando los valores.
@@ -101,7 +103,7 @@ Al aplicar el filtro hay que tener en cuenta el \textit{stride}, que es el movim
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{filtro}
-	\caption{Ejemplo aplicación de un filtro con \textit{stride} 1~\cite{cnn}.}
+	\caption[Ejemplo aplicación de un filtro con \textit{stride} 1.]{Ejemplo aplicación de un filtro con \textit{stride} 1~\cite{cnn}.}
 	\label{fig:filtro}
 \end{figure}
 
@@ -110,7 +112,7 @@ Para calcular el tamaño de los datos una vez pasado un filtro se puede usar la 
 h'=\left \lfloor \frac{h-f+s}{s} \right \rfloor; w'= \left \lfloor \frac{w-f+s}{s} \right \rfloor
 \end{equation}
 
-Siendo $\left \lfloor  \right \rfloor$ la función de parte entera o \textit{floor operation}. Si se aplica esta fórmula a los datos de la imagen~\ref{fig:filtro}:
+Siendo $\left \lfloor x  \right \rfloor$ la función de parte entera o \textit{floor operation} de $x$. Si se aplica esta fórmula a los datos de la imagen~\ref{fig:filtro}:
 
 \begin{equation}
 h'=\left \lfloor \frac{4-2+1}{1} \right \rfloor = 3; w'= \left \lfloor \frac{4-2+1}{1} \right \rfloor=3
@@ -142,14 +144,14 @@ Pero, como se ha visto, los filtros no suelen tener el mismo tamaño ni el mismo
 RF_{eff}^n = RF_{eff}^{n-1} + ((f_n -1)* \prod_{i=1}^{n-1}s_i)
 \end{equation}
 
-Donde $f_n$ es el tamaño del filtro de la capa $n$, $s_i$ es el valor de \textit{stride} para la capa i, y $RF_{eff}^{n-1}$ representa el \textit{effective receptive field} de la capa anterior.
+Donde $f_n$ es el tamaño del filtro de la capa $n$, $s_i$ es el valor de \textit{stride} para la capa $i$, y $RF_{eff}^{n-1}$ representa el \textit{effective receptive field} de la capa anterior.
 
 Como ya se ha comentado, uno de los principales problemas de las capas convolucionales son los valores de los bordes, ya que al aparecer menos en las operaciones de los bordes se ven menos representados en las salidas de las capas. Es por ello que se propuso una modificación de las capas convolucionales llamada \textit{Dilated Convolution}, la cual tiene una dilatación ($d$) siendo esta la distancia entre los valores del filtro a tener en cuenta. Como se puede ver en la figura~\ref{fig:dilated}, donde se obtiene un filtro de tamaño 3 y con una dilatación de 2, los valores de los bordes tienen un mayor peso en la salida de la capa.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{dilated}
-	\caption{\textit{Dilated Convolution} con dilatación a 2~\cite{cnn}.}
+	\caption[\textit{Dilated Convolution} con dilatación a 2.]{\textit{Dilated Convolution} con dilatación a 2~\cite{cnn}.}
 	\label{fig:dilated}
 \end{figure}
 
@@ -172,11 +174,11 @@ h'=\left \lfloor \frac{h-f+s}{s} \right \rfloor;w'=\left \lfloor \frac{w-f+s}{s}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{agrupacion}
-	\caption{Ejemplo de capa de agrupación de tamaño 2~\cite{cnn}.}
+	\caption[Ejemplo de capa de agrupación de tamaño 2.]{Ejemplo de capa de agrupación de tamaño 2~\cite{cnn}.}
 	\label{fig:agrupacion}
 \end{figure}
 
-Este tipo de capas son muy útiles para compactar la información, para detectar cambios en los datos como puede ser para el movimiento o la posición en una imagen.
+Este tipo de capas son muy útiles para compactar la información y para detectar cambios en los datos, como puede ser el movimiento o la posición en una imagen.
 
 \textbf{Capas totalmente conectadas}
 
@@ -189,7 +191,7 @@ Capas en las cuales la función de activación de cada unidad toma como valor de
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{funac}
-	\caption{Funciones de activación más comunes en capas de no linealidad~\cite{cnn}.}
+	\caption[Funciones de activación más comunes en capas de no linealidad.]{Funciones de activación más comunes en capas de no linealidad~\cite{cnn}.}
 	\label{fig:funac}
 \end{figure}
 \subsection{ResNet}
@@ -198,11 +200,11 @@ ResNet o \textit{Residual Network} es un tipo de arquitectura de redes neuronale
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{resnet}
-	\caption{Ejemplo bloque residual en ResNet~\cite{cnn}.}
+	\caption[Ejemplo bloque residual en ResNet.]{Ejemplo bloque residual en ResNet~\cite{cnn}.}
 	\label{fig:resnet}
 \end{figure}
 \subsection{Region-Based CNN}
-Las \textit{Region-Based Convolutional Neural Nwtworks} o RCNN son un tipo de redes neuronales convolucionales orientadas al reconocimiento de objetos en imágenes. Este tipo de redes convolucionales, como se puede observar en la figura~\ref{fig:rcnn}, tiene 3 módulos~\cite{cnn}:
+Las \textit{Region-Based Convolutional Neural Networks} o RCNN son un tipo de redes neuronales convolucionales orientadas al reconocimiento de objetos en imágenes. Este tipo de redes convolucionales, como se puede observar en la figura~\ref{fig:rcnn}, tiene 3 módulos~\cite{cnn}:
 \begin{itemize}
 	\item Módulo de extracción de propuestas a región.
 	\item Módulo de extracción de características. Uso de redes neuronales convolucionales para la extracción de características de cada región propuesta.
@@ -211,7 +213,7 @@ Las \textit{Region-Based Convolutional Neural Nwtworks} o RCNN son un tipo de re
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{rcnn}
-	\caption{Region-Based CNN~\cite{cnn}.}
+	\caption[Region-Based CNN.]{Region-Based CNN~\cite{cnn}.}
 	\label{fig:rcnn}
 \end{figure}
 \subsection{FPN}
@@ -223,7 +225,7 @@ FPN o Feature Pyramid Network es un tipo de red neuronal piramidal que se utiliz
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{fpn}
-	\caption{Feature Pyramid Network~\cite{fpn}.}
+	\caption[Feature Pyramid Network.]{Feature Pyramid Network~\cite{fpn}.}
 	\label{fig:fpn}
 \end{figure}
 
@@ -240,6 +242,3 @@ La distancia entre dos puntos es el espacio que los separa. Esta distancia se pu
 	\item \textbf{Manhattan}: distancia que se calcula como la suma de las diferencia de los valores de las distintas dimensiones de los puntos.
 	\item \textbf{Euclídea}: distancia que se calcula como la longitud de la línea que une los dos puntos, a partir del teorema de Pitágoras.
 \end{itemize}
-
-\subsection{Ángulo entre vectores}
-Ángulo mínimo que hay que girar un vector para conseguir la dirección del otro vector con el cual ha de compartir al menos un punto~\cite{angvec}.

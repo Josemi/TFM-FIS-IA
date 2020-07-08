@@ -37,6 +37,15 @@
 \nonzeroparskip
 
 
+\clubpenalty=10000
+\widowpenalty=10000
+% Evitar solapes en el header
+\nouppercaseheads
+
+\usepackage[ruled,vlined]{algorithm2e}
+
+\usepackage{pdflscape}
+
 % Imagenes
 \usepackage{graphicx}
 \newcommand{\imagen}[2]{
@@ -441,7 +450,7 @@
 \noindent Expone:
 
 \noindent Que el alumno D. \nombre, con DNI 71303106R, ha realizado el Trabajo final de Máster en Inteligencia de Negocio y Big Data en Entornos Seguros 
-          titulado título de TFM. 
+          titulado Detección y comparación de posturas en una flujo de imágenes. 
 
 \noindent Y que dicho trabajo ha sido realizado por el alumno bajo la dirección del que suscribe, en virtud de lo cual se autoriza su presentación y defensa.
 
@@ -485,18 +494,18 @@ Dr. Álvar Arnaiz González
 % Abstract en castellano
 \renewcommand*\abstractname{Resumen}
 \begin{abstract}
-	El \textit{\textbf{Parkinson}} es un trastorno neurodegenerativo que afecta al sistema nervioso de la persona. Esta enfermedad afecta principalmente a \textbf{personas mayores}. Una de las mejores formas de mejorar la vida de los pacientes que padecen esta enfermedad son las \textbf{rehabilitaciones}, donde un médico o terapeuta ayuda a mejorar la \textbf{movilidad} y la \textbf{autonomía} del paciente.
+	El \textit{Parkinson} es un trastorno neurodegenerativo que afecta al sistema nervioso de la persona. Esta enfermedad afecta principalmente a personas mayores. Una de las mejores formas de mejorar la vida de los pacientes que padecen esta enfermedad es la rehabilitación, donde un médico o terapeuta ayuda a mejorar la movilidad y la autonomía del paciente.
 	
-	En la actualidad, estas rehabilitaciones se hacen de forma \textbf{presencial}, teniendo que ser el paciente el que se \textbf{desplace} hasta el \textbf{centro de salud}. Además, con la constante \textbf{despoblación} que sufren las \textbf{zonas rurales} de España, el número de centro de salud se ha reducido considerablemente, haciendo así que los pacientes tengan que \textbf{desplazarse} a otras localidades para hacer sus rehabilitaciones, que teniendo en cuenta su dependencia y su elevada edad es un \textbf{gran problema}.
+	En la actualidad, estas sesiones de rehabilitación se hacen de forma presencial, teniendo que ser el paciente el que se desplace hasta el centro de salud. Además, con la constante despoblación que sufren las zonas rurales de España, el número de centros de salud se ha reducido considerablemente, haciendo así que los pacientes tengan que desplazarse a otras localidades para hacer sus rehabilitaciones. Teniendo en cuenta su dependencia y su elevada edad, es un gran problema.
 	
-	Es por ello que surgió el \textbf{proyecto} <<Estudio de factibilidad y coste-efectividad del uso telemedicina con un equipo multidisciplinar para enfermedad de Parkinson>>, donde se ha desarrollado una aplicación que permite realizar rehabilitaciones de manera \textit{\textbf{online}} sin necesidad de que el paciente se desplace a un centro de salud.
+	Es por ello que surgió el proyecto <<Estudio de factibilidad y coste-efectividad del uso telemedicina con un equipo multidisciplinar para enfermedad de Parkinson>>, donde se ha desarrollado una aplicación que permite realizar sesiones de rehabilitación de manera \textit{online} sin necesidad de que el paciente se desplace a un centro de salud.
 	
-	Dentro del desarrollo de este proyecto se encuentra el \textbf{subproyecto} que se ha realizado en este Trabajo Fin de Máster, un \textbf{estudio del estado del arte} para la selección de un modelo de \textbf{visión artificial} capaz de estimar la posición de una persona en una imagen, y posterior \textbf{implementación} de un \textbf{sistema de extracción de características y comparación de posiciones}. Todo ello con la \textbf{finalidad} de poder comparar los ejercicios realizados por el paciente con los grabados por los terapeutas. Este desarrollo permite la \textbf{automatización} de las rehabilitaciones \textit{online}, así como una continua \textbf{retroalimentación} de la evolución del paciente \textbf{mejorando} así su \textbf{frecuencia} de trabajo y su \textbf{motivación} por mejorar.
+	Dentro del desarrollo de dicho proyecto se encuentra el subproyecto que se ha realizado en este Trabajo Fin de Máster, un estudio del estado del arte para la selección de un modelo de visión artificial capaz de estimar la posición de una persona en una imagen, y posterior implementación de un sistema de extracción de características y comparación de posiciones. Todo ello con la finalidad de poder comparar los ejercicios realizados por el paciente con los grabados por los terapeutas. Este desarrollo permite la automatización de las rehabilitaciones \textit{online}, así como una continua retroalimentación de la evolución del paciente mejorando así su frecuencia de trabajo y su motivación por mejorar.
 \end{abstract}
 
 \renewcommand*\abstractname{Descriptores}
 \begin{abstract}
-\textit{Parkinson}, rehabilitación, flujo de datos, \textit{Big Data}, visión artificial, investigación.
+Visión artificial, flujo de datos, \textit{Big Data}, investigación, rehabilitación, \textit{Parkinson}.
 \end{abstract}
 
 \clearpage
@@ -504,19 +513,19 @@ Dr. Álvar Arnaiz González
 % Abstract en inglés
 \renewcommand*\abstractname{Abstract}
 \begin{abstract}
-\textit{\textbf{Parkinson}} is a neurodegenerative disorder that affects the nervous sytem of the person. This illness affects mainly to \textbf{old people}. One of the best ways to improve patient's lives that suffer this illness is \textbf{rehabilitation}, where a doctor or a therapist helps to improve the patient's \textbf{mobility} and \textbf{autonomy}.
+\textit{Parkinson} is a neurodegenerative disorder that affects the nervous system of the person. This illness affects mainly to old people. One of the best ways to improve patients' lives that suffer this illness is rehabilitation, where a doctor or a therapist helps to improve the patients' mobility and autonomy.
 
-Nowadays, rehabilitations are made \textbf{face-to-face}, been the patient the one who has to \textbf{travel} to the \textbf{clinic}. Furthermore, with the constant \textbf{depopulation} that suffers \textbf{rural zones} of  Spain, the number of clinics has been reduced considerably, causing patients to have to \textbf{move} to others locations to do their rehablitations, that considering their dependecy and their old age, it is a \textbf{big problem}.
+Nowadays, rehabilitations are made face-to-face, being the patient the one who has to travel to the clinic. Furthermore, with the constant depopulation that suffers rural zones of  Spain, the number of clinics has been reduced considerably, causing patients to have to move to others locations to do their rehablitations, what considering their dependecy and their old age, it is a big problem.
 
-That is why ``Feasibility and cost-effectiveness study of telemedicine use with a multidisciplinary team for Parkinson's disease'' \textbf{project} surged, where an application has been developed to allow \textbf{online} rehabilitation without the need for the patient to move to the clinic.
+That is why ``Feasibility and cost-effectiveness study of telemedicine use with a multidisciplinary team for Parkinson's disease'' project emerged, where an application has been developed to allow online rehabilitation without the need for the patient to move to the clinic.
 
-Inside this project, there is a \textbf{subproject} that has been done in this End of Master's Project, a \textbf{state of art study} to select the best \textbf{computer vision} model to estimate the posture of a person in an image, and the \textbf{implementation} of an \textbf{feature extraction system and postures comparation}. All with the \textbf{purpose} of to be able to compare patient's exercises to therapist's exercises. This development allows the \textbf{automation} of online rehabilitations, as well as continuos \textbf{feedback} on the patient´s evolution, thus \textbf{improving} their exercise \textbf{frequency} and their \textbf{motivation} to improve.
+Inside this project, there is a subproject that has been done in this Final Master's Project, a state of art study to select the best computer vision model to estimate the posture of a person into an image, and the implementation of a feature extraction system and postures comparation. All with the purpose of being able to compare patient's exercises to therapist's exercises. This development allows the automation of online rehabilitations, as well as continuos feedback on the patient´s evolution, thus improving their exercise frequency and their motivation to improve.
 
 \end{abstract}
 
 \renewcommand*\abstractname{Keywords}
 \begin{abstract}
-\textit{Parkinson}, rehabilitation, data stream, \textit{Big Data}, computer vision, research.
+Computer vision, data stream, \textit{Big Data}, research, rehabilitation, \textit{Parkinson}.
 \end{abstract}
 
 \clearpage

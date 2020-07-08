@@ -6,28 +6,32 @@ En cualquier proyecto la fase de diseño de las distintas partes de éste es ese
 Los diseños realizados en el proyecto han sido:
 \begin{itemize}
 	\item \textbf{Diseño de datos}: subapartado donde se van a mostrar las distintas estructuras de datos utilizadas, así como un conjunto de diagramas para comprender la estructura de los ficheros de ejecución del proyecto.
-	\item \textbf{Diseño procedimental}: subapartado donde se va a mostrar principalmente como es la comunicación entre el flujo y las implementaciones realizadas.
+	\item \textbf{Diseño procedimental}: subapartado donde se va a mostrar, principalmente, como es la comunicación entre el flujo y las implementaciones realizadas.
 \end{itemize}
 \section{Diseño de datos}
 
-Este proyecto al ser mayoritariamente un proyecto de investigación apenas tiene diseño de datos. Aun así , sí que existe un diseño donde se muestra la estructura de los ficheros necesarios para la ejecución final sobre el flujo.
+Este proyecto, al ser mayoritariamente un proyecto de investigación apenas tiene diseño de datos. Aun así, sí que existe un diseño donde se muestra la estructura de los ficheros necesarios para la ejecución final sobre el flujo.
 
 Este diseño se muestra en forma de diagrama de clases, figura~\ref{fig:diacla}, donde los asteriscos en los nombres de las variables representan que realmente hay dos variables una para la parte izquierda y otra para la derecha (un ejemplo puede se el hombro*, que significa que existe un hombroI y un hombroD, los dos del mismo tipo). En el diagrama se muestra la implementación final de la posición con la clase \texttt{Posicion}, que como se comentó en el apartado~\ref{reducida}, es la versión reducida con el conjunto mínimo de cálculos necesarios.
 
 Por otro lado, la clase \texttt{Interfaz} es la que se comunica con el flujo de datos (de ahí su nombre), en ella se carga el modelo y se crean y se comparan las posiciones.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{DiagramaClaseReducido}
-	\caption{Diagrama de clases.}
-	\label{fig:diacla}
-\end{figure}
+Además, en el diagrama se pueden observar las relaciones entre las clases más usadas en el código. En este diagrama se puede observar también como se incorpora la herramienta \textit{Detectron2} en el proyecto (clases \texttt{cfg}, \texttt{model\_zoo}, \texttt{Instances} y \texttt{DefaultPredictor}).
+
+\begin{landscape}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1.6\textwidth]{DiagramaClaseFinal}
+		\caption{Diagrama de clases.}
+		\label{fig:diacla}
+	\end{figure}	
+\end{landscape}
 
 \section{Diseño procedimental}
 
 El diseño procedimental realizado en este proyecto, como en el caso del diseño de datos, se ha realizado sobre la implementación final en las clases que usan el flujos de datos. Estos diseño procedimentales se han realizado a partir de diagramas de secuencia, donde se muestran las dos posibbles interacciones del flujo con las clases.
 
-En la primera posibilidad, el flujo tan solo pide las posiciones de las imágenes que va proporcionando, figura~\ref{fig:diasec1}. Como se puede ver en el diagrama de secuencias, los primero que tiene que realizar un \textit{worker} del flujo es instanciar la clase \texttt{Interfaz} donde se procede con la carga y configuración del modelo. Una vez instanciada la clase se puede hacer llamadas para obtener la estimación de la posición de un imagen (operación que se puede repetir mientras esté cargado el modelo, es decir, mientras esté vivo el \textit{worker}).
+En la primera posibilidad, el flujo tan solo pide las posiciones de las imágenes que va proporcionando, figura~\ref{fig:diasec1}. Como se puede ver en el diagrama de secuencias, lo primero que tiene que realizar un \textit{worker} del flujo es instanciar la clase \texttt{Interfaz} donde se procede con la carga y configuración del modelo. Una vez instanciada la clase, se pueden hacer llamadas para obtener la estimación de la posición de un imagen (operación que se puede repetir mientras esté cargado el modelo, es decir, mientras esté vivo el \textit{worker}).
 
 \begin{figure}[h]
 	\centering
