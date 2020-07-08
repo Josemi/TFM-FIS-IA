@@ -12,3 +12,4 @@ Carpeta de documentación donde se encuentra la documentación del proyecto en d
 
  - **Diagramas**: carpeta con el conjunto de diagramas necesarios para el diseño del proyecto.
  - **Latex**: documentación en LaTeX de la memoria del proyecto.
+ - **Vídeos**: carpeta donde se encuentran los enlaces a los vídeos grabados.
