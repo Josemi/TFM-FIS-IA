@@ -1,0 +1,9 @@
+En este documento se encuentran los enlaces a los vídeos grabados:
+
+- Resumen:
+
+- Estructura, estudio del estado del arte e implementación:
+
+- Demostración visualización:
+
+- Demostración sobre el flujo: https://youtu.be/YXnoQF7xoK8
