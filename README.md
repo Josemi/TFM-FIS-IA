@@ -70,4 +70,10 @@ the automation of online rehabilitations, as well as continuos feedback
 on the patient´s evolution, thus improving their exercise frequency
 and their motivation to improve.
 
+### Demo visualización de datos
 ![Demostración visualización](doc/Latex/img/demo.PNG)
+
+### Demo modos ejecución flujo
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Josemi/TFM-FIS-IA/master/doc/Latex/img/josemi.gif" width="1000"/>
+</p>
