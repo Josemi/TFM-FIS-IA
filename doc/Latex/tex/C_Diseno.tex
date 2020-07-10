@@ -29,7 +29,7 @@ Además, en el diagrama se pueden observar las relaciones entre las clases más 
 
 \section{Diseño procedimental}
 
-El diseño procedimental realizado en este proyecto, como en el caso del diseño de datos, se ha realizado sobre la implementación final en las clases que usan el flujos de datos. Estos diseño procedimentales se han realizado a partir de diagramas de secuencia, donde se muestran las dos posibbles interacciones del flujo con las clases.
+El diseño procedimental realizado en este proyecto, como en el caso del diseño de datos, se ha realizado sobre la implementación final en las clases que usan el flujos de datos. Estos diseño procedimentales se han realizado a partir de diagramas de secuencia, donde se muestran las dos posibles interacciones del flujo con las clases.
 
 En la primera posibilidad, el flujo tan solo pide las posiciones de las imágenes que va proporcionando, figura~\ref{fig:diasec1}. Como se puede ver en el diagrama de secuencias, lo primero que tiene que realizar un \textit{worker} del flujo es instanciar la clase \texttt{Interfaz} donde se procede con la carga y configuración del modelo. Una vez instanciada la clase, se pueden hacer llamadas para obtener la estimación de la posición de un imagen (operación que se puede repetir mientras esté cargado el modelo, es decir, mientras esté vivo el \textit{worker}).
 
