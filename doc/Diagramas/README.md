@@ -8,4 +8,4 @@
 
 ---
 
-Conjutno de diagramas de flujo, de clase y de secuencia utilizados en el diseño de las distintas partes del proyecto.
+Conjunto de diagramas de flujo, de clase y de secuencia utilizados en el diseño de las distintas partes del proyecto.
