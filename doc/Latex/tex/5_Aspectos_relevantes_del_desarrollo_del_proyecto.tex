@@ -1,9 +1,9 @@
 \capitulo{5}{Aspectos relevantes del desarrollo del proyecto}
 
-En este apartado se va a comentar, a manera de resumen temporal, el desarrollo del proyecto. Es en este apartado donde se comentarán las opciones y decisiones tomadas, los problemas surgidos y todos los aspectos importantes. Se ha considerado que la mejor forma de organizar este apartado es en secciones donde se comenta cada apartado del desarrollo.
+En este apartado se va a comentar, a manera de resumen temporal, el desarrollo del proyecto. Es en este apartado donde se comentarán las opciones y decisiones tomadas, los problemas surgidos y todos los aspectos importantes. Se ha considerado que la mejor forma de organizar este apartado es en secciones donde se comenta cada aspecto del desarrollo.
 
 \section{Desarrollo FIS-HUBU}\label{desarrolloFH}
-FIS-HUBU es proyecto que permite realizar vídeo llamadas entre responsables y pacientes con Parkinson para realizar rehabilitaciones de manera \textit{online}, es decir, sin la necesidad de desplazarse hasta la consulta o el hospital. Este proyecto se ha financiado por la universidad Carlos III, con el proyecto  <<Fundación Burgos por la investigación de la salud complejo asistencial universitario de Burgos PI19/00670. Estudio de factibilidad y coste-efectividad del uso telemedicina con un equipo multidisciplinar para enfermedad de Parkinson>>.
+FIS-HUBU es un proyecto que permite realizar vídeo llamadas entre responsables y pacientes con Parkinson para realizar rehabilitaciones de manera \textit{online}, es decir, sin la necesidad de desplazarse hasta la consulta o el hospital. Este proyecto se ha financiado por la universidad Carlos III, con el proyecto  <<Fundación Burgos por la investigación de la salud complejo asistencial universitario de Burgos PI19/00670. Estudio de factibilidad y coste-efectividad del uso telemedicina con un equipo multidisciplinar para enfermedad de Parkinson>>.
 
 Esta aplicación, que ha sido desarrollada junto con mi compañero José Luis Garrido Labrador, permite por parte del responsable observar y evaluar la evolución del estado de un paciente, esta evolución también es visible para el paciente que puede ver su propio progreso.
 
@@ -90,7 +90,7 @@ De estos algoritmos se necesita:
 	\item Que la salida del procesado de los fotogramas pueda servir para una posterior comparación con el ejercicio base.
 \end{itemize}
 
-Teniendo todos estos factores en cuenta, se estudió qué herramientas se pueden usar para esta fase del trabajo. Se buscaron herramientas programadas en \textit{Python} para poder integrarse bien con el resto del proyecto y porque es uno de los lenguajes con los cuales se tiene más soltura, tanto por parte del alumno como por parte de los tutores para resolver dudas y ayudar en los problemas. Las herramientas encontradas fuera:
+Teniendo todos estos factores en cuenta, se estudió qué herramientas se pueden usar para esta fase del trabajo. Se buscaron herramientas programadas en \textit{Python} para poder integrarse bien con el resto del proyecto y porque es uno de los lenguajes con los cuales se tiene más soltura, tanto por parte del alumno como por parte de los tutores para resolver dudas y ayudar en los problemas. Las herramientas encontradas fueron:
 \begin{itemize}
 	\item \textit{TF-Pose-Estimator}.
 	\item \textit{PoseNet}.
@@ -326,7 +326,7 @@ La principal característica, aparte del uso de los ángulos, de la primera vers
 
 La división que se planteó en esta versión fue (Figura~\ref{fig:estiradosAbajo2}):
 \begin{itemize}
-	\item Brazos: en esta parte se encuentran unicamente los ángulos de los codos de ambos brazos (5 y 6).
+	\item Brazos: en esta parte se encuentran únicamente los ángulos de los codos de ambos brazos (5 y 6).
 	\item Torso: ángulos de la cadera con la columna (7 y 8), ángulos de los hombros (3 y 4) y ángulos del cuello con respecto a los hombros (1 y~2).
 	\item Piernas: ángulos de la cadera con el fémur de cada pierna (9 y 10) y ángulos de cada rodilla (11 y 12).
 \end{itemize}
@@ -341,7 +341,7 @@ La división que se planteó en esta versión fue (Figura~\ref{fig:estiradosAbaj
 La comparación de cada una de las partes se realiza calculando la suma de los valores absolutos de las restas de los valores de los ángulos entre las dos posiciones.
 
 \subsection{Problema con los ángulos de los brazos}
-Tras haber implementado la primera versión, se realizaron unas pruebas para comprobar su funcionamiento. En estas pruebas se encontró un fallo muy importante, ya que los ángulos que se obtenían eran hasta 180 grados, si se superaba este valor el ángulo se calculaba sobre el otro lado del punto central, es decir, nunca es superior a 180 grados. Es por ello que  posiciones como las que se pueden ver en las figuras~\ref{fig:brazosAbajo} y~\ref{fig:brazosArriba} tiene ángulos en ambos codos muy parecidos, aunque su posición sean casi contrarias.
+Tras haber implementado la primera versión, se realizaron unas pruebas para comprobar su funcionamiento. En estas pruebas se encontró un fallo muy importante, ya que los ángulos que se obtenían eran hasta 180 grados, si se superaba este valor el ángulo se calculaba sobre el otro lado del punto central, es decir, nunca es superior a 180 grados. Es por ello que  posiciones como las que se pueden ver en las figuras~\ref{fig:brazosAbajo} y~\ref{fig:brazosArriba} tiene ángulos en ambos codos muy parecidos, aunque sean posiciones casi contrarias.
 
 \begin{figure}[ht]
 	\begin{subfigure}{.48\textwidth}
@@ -718,7 +718,7 @@ Para poder observar mejor se realizó una gráfica, figura~\ref{fig:res1}, donde
 	\label{fig:res1}
 \end{figure}
 
-Como se puede observar en la figura~\ref{fig:res1}, existen algunos fotogramas que obtienen tiempos elevados en ambas ejecuciones. La existencia de estas situaciones se tuvieron que tener en cuenta en el cálculo del número de \textit{workers} necesarios en la paralelización del flujo. Debido a que en una situación ideal no habría apenas variación entre los tiempos de ejecución lo permitiría acortar de una manera más justa este número.
+Como se puede observar en la figura~\ref{fig:res1}, existen algunos fotogramas que obtienen tiempos elevados en ambas ejecuciones. Estas situaciones se tuvieron que tener en cuenta en el cálculo del número de \textit{workers} necesarios en la paralelización del flujo. Debido a que en una situación ideal no habría apenas variación entre los tiempos de ejecución lo permitiría acortar de una manera más justa este número.
 
 El número de \textit{workers} necesarios para ejecutar el flujo sin almacenar el procesado del esqueleto (modo 0) realizando solo las tareas de cálculo de posición y comparación de posiciones es:
 
@@ -751,7 +751,7 @@ Para justificar la aproximación a la distribución normal para el uso de la med
 \end{figure}
 
 \subsection{Resultados flujo entero}
-Los resultados obtenidos de la ejecución del flujo con todos sus componentes se puede ver en la tabla~\ref{tab:res2}.
+Los resultados obtenidos de la ejecución del flujo con todos sus componentes se pueden ver en la tabla~\ref{tab:res2}.
 
 \begin{table}[h]
 	\centering
